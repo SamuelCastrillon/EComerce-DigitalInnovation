@@ -1,0 +1,37 @@
+### Routs Users
+
+### get
+GET http://localhost:3000/users
+
+### get
+GET http://localhost:3000/products
+
+### search
+GET http://localhost:3000/users/1
+
+###* register User 1
+POST http://localhost:3000/users/register
+Content-Type: application/json
+
+{
+  "name": "SamCasTj",
+  "email": "samCastj@mail.com",
+  "birtDate": "20/08/1995",
+  "nDni": 1036661383,
+  "password": "string245"
+}
+
+###* register User 2
+POST http://localhost:3000/users/register
+Content-Type: application/json
+
+{
+  "name": "Bercas212",
+  "email": "bercas212@mail.com",
+  "birtDate": "20/08/1995",
+  "nDni": 1036661383,
+  "password": "yopato01"
+}
+
+
+
