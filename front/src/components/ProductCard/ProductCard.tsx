@@ -3,7 +3,7 @@ import { ProductCardProps } from "./type.productCard";
 
 export const ProductCard: React.FC<ProductCardProps> = ({ imageUrl, productName, price }) => {
   return (
-    <div className="flex flex-col h-80 w-56 mt-5 justify-between items-center bg-gray-50 rounded">
+    <div className="flex flex-col h-80 w-56 mt-5 mr-5 justify-between items-center bg-gray-50 rounded">
       <img
         src={imageUrl}
         alt={productName}
