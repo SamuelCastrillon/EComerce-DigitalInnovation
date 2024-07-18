@@ -21,6 +21,7 @@ export default function RootLayout({
       <body className="flex flex-col justify-center">
         <Navbar />
         {children}
+        <hr className="border-none h-1 bg-lime-600 mt-5 mb-5" />
         <Footer />
       </body>
     </html>
