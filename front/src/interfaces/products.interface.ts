@@ -3,11 +3,11 @@
 export interface IProduct {
   id: number;
   name: string;
-  description: string;
   price: number;
-  stock: number;
+  description: string;
   image: string;
   categoryId: number;
+  stock: number;
 }
 
 export interface ICategory {
