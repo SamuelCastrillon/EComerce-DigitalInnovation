@@ -1,6 +1,5 @@
 import React from "react";
-import LogoApp from "../LogoApp/LogoApp";
-import IconeMenu from "@/assets/icons/ic-round-menu.svg";
+import LogoApp from "./LogoApp/LogoApp";
 
 const Navbar: React.FC = () => {
   return (

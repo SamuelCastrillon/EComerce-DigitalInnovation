@@ -1,11 +1,7 @@
-import Link from "next/link";
+import NotFoundView from "@/views/NotFound/NotFoundView";
 
-export default function NotFound() {
-  return (
-    <div>
-      <h2>Not Found</h2>
-      <p>Could not find requested resource</p>
-      <Link href="/home">Return Home</Link>
-    </div>
-  );
-}
+const NotFound = () => {
+  return <NotFoundView />;
+};
+
+export default NotFound;

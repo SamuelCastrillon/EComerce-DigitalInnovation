@@ -1,12 +1,12 @@
-import HomeCarousel from "@/components/HomeCarousel/HomeCarousel";
-import ProductsList from "@/components/ProductsList/ProductsList";
+import HomeCarousel from "@/components/BodyComponents/HomeCarousel/HomeCarousel";
+import ProductsList from "@/components/BodyComponents/ProductsList/ProductsList";
 import React from "react";
 
 export default function HomeView() {
   return (
-    <main className="items-center m-auto text-center">
+    <div className="items-center m-auto text-center">
       <HomeCarousel />
       <ProductsList />
-    </main>
+    </div>
   );
 }

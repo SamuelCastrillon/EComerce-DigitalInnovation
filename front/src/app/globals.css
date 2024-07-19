@@ -19,9 +19,7 @@
 body {
   font-family: system-ui;
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-  /* width: 1080px;
-  margin: auto; */
+  /* background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb)); */
 }
 
 @layer utilities {
