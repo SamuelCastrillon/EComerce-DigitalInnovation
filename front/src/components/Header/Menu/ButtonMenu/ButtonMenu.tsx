@@ -6,7 +6,7 @@ interface IButtonData {
   url: string;
 }
 
-const ButtonNav: React.FC<IButtonData> = ({ name, url }) => {
+const ButtonMenu: React.FC<IButtonData> = ({ name, url }) => {
   return (
     <Link href={url} className="flex items-center">
       <button>{name}</button>
@@ -14,4 +14,4 @@ const ButtonNav: React.FC<IButtonData> = ({ name, url }) => {
   );
 };
 
-export default ButtonNav;
+export default ButtonMenu;

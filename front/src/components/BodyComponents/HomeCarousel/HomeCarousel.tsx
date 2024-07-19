@@ -16,7 +16,7 @@ const HomeCarousel = () => {
         <li></li>
         <li></li>
       </ul>
-      <div className="w-full h-28 h-24 bg-gradient-to-t from-gray-200 to-lime-200 absolute -bottom-24 "></div>
+      <div className="w-full h-24 bg-gradient-to-t from-gray-200 to-lime-200 absolute -bottom-24 "></div>
     </section>
   );
 };
