@@ -16,7 +16,9 @@ const ProductDetailsCard: React.FC<IData> = ({ data }) => {
         <div className="flex flex-col">
           <h2 className="text-xl font-bold">{name}</h2>
           <strong className="text-2xl mt-5 mb-5">US$ {price}</strong>
-          <button className="w-44 bg-lime-600 rounded p-1 font-semibold">Add to Cart</button>
+          <button className="w-44 bg-lime-600 rounded p-1 font-semibold text-white">
+            Add to Cart
+          </button>
         </div>
         <hr className="border-none h-px bg-lime-600 mt-2 mb-2" />
         <p className="text-gray-600">{description}</p>

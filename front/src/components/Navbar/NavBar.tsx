@@ -20,7 +20,7 @@ const Navbar: React.FC = () => {
             />
           </button>
         </form>
-        <div className="font-bold">
+        <div className="flex font-bold gap-4 mr-5">
           <button>Register</button>
           <button>Login</button>
         </div>
