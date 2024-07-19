@@ -1,14 +1,16 @@
-import { arrrayProducts } from "@/helpers/dataProducts";
+import { arrayProducts } from "@/helpers/dataProducts";
 import React from "react";
-import { ProductCard } from "../ProductCard/ProductCard";
+import { ProductCard } from "./ProductCard/ProductCard";
+import { IProductCard } from "./ProductCard/IProductCard";
+import { IProduct } from "@/interfaces/products.interface";
 
 const ProductsList = () => {
-  const Products = arrrayProducts;
+  const Products: IProduct[] = arrayProducts;
 
   return (
-    <section className="flex flex-wrap justify-start pl-12">
-      {Products.map((e) => {
-        return <ProductCard key={e.id} imageUrl={e.image} productName={e.name} price={e.price} />;
+    <section className="mt-10 flex flex-wrap justify-start pl-12">
+      {Products.map((e: IProductCard) => {
+        return <ProductCard key={e.id} id={e.id} name={e.name} price={e.price} image={e.image} />;
       })}
     </section>
   );

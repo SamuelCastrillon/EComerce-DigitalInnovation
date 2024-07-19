@@ -1,6 +1,6 @@
 import { IProduct } from "@/interfaces/products.interface";
 
-export const arrrayProducts: IProduct[] = [
+export const arrayProducts: IProduct[] = [
   {
     id: 1,
     name: "iPhone 11",
