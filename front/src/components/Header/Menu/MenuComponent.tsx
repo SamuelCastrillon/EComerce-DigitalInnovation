@@ -7,7 +7,7 @@ const MenuComponent: React.FC = () => {
   return (
     <menu className="h-8 flex bg-lime-600 text-white gap-5">
       <button className="flex h-8 items-center gap-1 ml-1">
-        <IconeMenu />
+        <img src={IconeMenu.src} alt="MenuIcone" />
         Categorias
       </button>
       <ButtonMenu name={"Register"} url={"/register"} />
