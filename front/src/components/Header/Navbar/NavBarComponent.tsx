@@ -4,7 +4,7 @@ import ButtonNav from "./ButtonNav/ButtonNav";
 
 const NavbarComponent: React.FC = () => {
   return (
-    <nav className="h-14 flex justify-between items-center bg-lime-950 text-white ">
+    <nav className="h-[60px] flex justify-between items-center bg-lime-950 text-white ">
       <LogoApp />
       <form className="w-[50%] flex justify-between bg-white rounded">
         <input
