@@ -10,7 +10,7 @@ interface IProductId {
 const ProductDetailsView: React.FC<IProductId> = ({ id }) => {
   const productData: IProduct | undefined = getProductById(id);
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center">
       {productData ? <ProductDetailsCard data={productData} /> : "Error"}
     </div>
   );
