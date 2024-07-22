@@ -1,13 +1,13 @@
 import React from "react";
-import IconeMenu from "@/assets/icons/ic-round-menu.svg";
+import { Bars3Icon } from "@heroicons/react/24/solid";
 
-const CatMenuDrow = () => {
+const CMenuDrow = () => {
   return (
     <button className="flex h-8 items-center gap-1 ml-1">
-      <img src={IconeMenu.src} alt="MenuIcone" />
+      <Bars3Icon className="size-6 text-white" />
       Categorias
     </button>
   );
 };
 
-export default CatMenuDrow;
+export default CMenuDrow;
