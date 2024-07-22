@@ -22,8 +22,9 @@ const NavbarComponent: React.FC = () => {
         </div>
       </form>
       <div className="flex font-bold gap-4 mr-5">
-        <ButtonNav name={"Register"} url={"/register"} />
-        <ButtonNav name={"LogIn"} url={"/login"} />
+        <ButtonNav name={"Sign in"} url={"/login"} />
+        <span>|</span>
+        <ButtonNav name={"Create Acount"} url={"/register"} />
       </div>
     </nav>
   );

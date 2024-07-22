@@ -1,8 +1,7 @@
-import ShopView from "@/views/Shop/ShopView";
 import React from "react";
 
-const page: React.FC = () => {
-  return <ShopView />;
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  return <>{children}</>;
 };
 
-export default page;
+export default Layout;
