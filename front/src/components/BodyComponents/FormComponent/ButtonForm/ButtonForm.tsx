@@ -1,9 +1,9 @@
 import React from "react";
 import { IButtonForm } from "../FormInterface";
 
-const ButtonForm: React.FC<IButtonForm> = ({ name }) => {
+const ButtonForm: React.FC<IButtonForm> = ({ name, type }) => {
   return (
-    <button className="" type="submit">
+    <button className="" type={type}>
       {name}
     </button>
   );

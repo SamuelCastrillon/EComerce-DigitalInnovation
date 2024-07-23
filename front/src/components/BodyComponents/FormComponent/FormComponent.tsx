@@ -4,6 +4,7 @@ import { Form, Formik } from "formik";
 import { IButtonForm, IDataConstructorInput, IFormikConstructor } from "./FormInterface";
 import ImputForm from "./ImputForm/ImputForm";
 import TitleForm from "./TitleForm/TitleForm";
+import ButtonForm from "./ButtonForm/ButtonForm";
 
 const FormComponent: React.FC<IFormikConstructor> = ({
   iniValues,
@@ -32,6 +33,10 @@ const FormComponent: React.FC<IFormikConstructor> = ({
                 />
               );
             })}
+
+          {butonsForm.map((data, i) => {
+            return <ButtonForm key={i} name={data.name} type={data.type} />;
+          })}
         </Form>
       </Formik>
     </>

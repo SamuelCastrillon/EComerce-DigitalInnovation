@@ -21,5 +21,5 @@ export interface IDataConstructorInput {
 
 export interface IButtonForm {
   name: string;
-  type: string;
+  type: "submit" | "reset" | "button" | undefined;
 }
