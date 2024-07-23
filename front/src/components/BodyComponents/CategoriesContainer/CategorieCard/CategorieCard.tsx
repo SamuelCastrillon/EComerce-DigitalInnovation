@@ -7,8 +7,9 @@ interface ICategorieCard {
 }
 
 const CategorieCard: React.FC<ICategorieCard> = ({ name, children }) => {
+  const categorieRoute = name;
   return (
-    <Link href={`/shop/filters/${name}`}>
+    <Link href={`/shop/products/${categorieRoute.toLowerCase()}`}>
       <div className="w-56 h-80 bg-white border-lime-500 border-[1px] rounded-md flex flex-col items-center justify-around">
         {children}
         <strong className="text-2xl">{name}</strong>
