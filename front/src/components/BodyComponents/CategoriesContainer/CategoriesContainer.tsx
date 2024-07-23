@@ -1,11 +1,6 @@
 import React from "react";
 import CategorieCard from "./CategorieCard/CategorieCard";
-import { DevicePhoneMobileIcon } from "@heroicons/react/24/solid";
 import { categoriesList } from "./categoriesList";
-// import IconePhones from "@/assets/icons/ProductsCategories/mdi--cellphone.svg";
-// import IconeTablets from "@/assets/icons/ProductsCategories/mdi--tablet.svg";
-// import IconeLaptos from "@/assets/icons/ProductsCategories/mdi--computer.svg";
-// import IconePrinters from "@/assets/icons/ProductsCategories/mdi--printer.svg";
 
 const CategoriesContainer = () => {
   return (
@@ -13,7 +8,11 @@ const CategoriesContainer = () => {
       {categoriesList.map((card) => {
         return (
           <CategorieCard key={card.id} name={card.name}>
-            {<card.icone className="w-1/2 text-lime-600" />}
+            {card.iconeObject ? (
+              <card.iconeObject className="w-1/2 text-lime-600" />
+            ) : (
+              <img src={card.iconeUrl} alt={`${card.name}Icone`} className="w-1/2" />
+            )}
           </CategorieCard>
         );
       })}
