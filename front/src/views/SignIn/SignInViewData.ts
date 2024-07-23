@@ -7,7 +7,7 @@ export interface IInputsFormValues {
   FieldPH: string;
 }
 
-export const SingInInitialValues = {
+export const SignInInitialValues = {
   userName: "",
   password: "",
 };

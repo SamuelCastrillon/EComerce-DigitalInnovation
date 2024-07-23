@@ -1,7 +1,7 @@
 "use client";
 import FormComponent from "@/components/BodyComponents/FormComponent/FormComponent";
 import React from "react";
-import { InputsFormValues, SingInInitialValues, SingInSchema } from "./SingInViewData";
+import { InputsFormValues, SignInInitialValues, SingInSchema } from "./SignInViewData";
 
 const SingInView = () => {
   async function handelerSubmit(data: string) {
@@ -10,7 +10,7 @@ const SingInView = () => {
   return (
     <section>
       <FormComponent
-        iniValues={SingInInitialValues}
+        iniValues={SignInInitialValues}
         valiSchema={SingInSchema}
         handelerSubmit={handelerSubmit}
         dataContructor={InputsFormValues}

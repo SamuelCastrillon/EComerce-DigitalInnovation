@@ -1,4 +1,4 @@
-import SingInView from "@/views/SingIn/SingInView";
+import SingInView from "@/views/SignIn/SingInView";
 import React from "react";
 
 const page = () => {
