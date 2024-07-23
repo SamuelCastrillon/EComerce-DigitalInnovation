@@ -6,13 +6,13 @@ const Footer: React.FC = () => {
   const UlData: IFooterUl[] = FooterData;
 
   return (
-    <footer className="flex items-center w-[90%] h-[300px] p-5 mt-5 mb-10 rounded-md bg-white">
+    <footer className="flex items-center w-[90%] h-[300px] p-5 mt-5 mb-10 rounded-md bg-lime-950">
       <div className="flex justify-around w-1/2">
         {UlData.map((element, i: number) => {
           return <FooterUl key={i} title={element.title} ulElements={element.ulElements} />;
         })}
       </div>
-      <div className="w-1/2">
+      <div className="w-1/2 text-gray-300">
         <form>
           <h3>Get the best offer</h3>
           <div className="flex gap-5">

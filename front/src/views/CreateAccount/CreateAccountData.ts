@@ -5,13 +5,6 @@ import {
 } from "@/components/BodyComponents/FormComponent/FormInterface";
 import * as yup from "yup";
 
-// export interface IInputsFormValues {
-//   LabelText: string;
-//   FieldType: string;
-//   FieldName: string;
-//   FieldPH: string;
-// }
-
 export const TitleFormData: ITitleForm = {
   title: "Sing In",
   icone: "URL",

@@ -5,6 +5,7 @@ export interface IFormikConstructor {
   titleForm: ITitleForm;
   butonsForm: IButtonForm[];
   dataContructor: IDataConstructorInput[];
+  dataCheckbox: Icheckbox[];
 }
 
 export interface ITitleForm {
@@ -17,6 +18,10 @@ export interface IDataConstructorInput {
   FieldType: string;
   FieldName: string;
   FieldPH: string;
+}
+
+export interface Icheckbox {
+  type: "checkbox";
 }
 
 export interface IButtonForm {

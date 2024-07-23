@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 const FooterRendering = ({ children }: { children: React.ReactNode }) => {
   const currentPath = usePathname();
-  console.log(currentPath !== "/");
+  // console.log(currentPath !== "/");
   return <>{currentPath !== "/" ? children : <>Sin Footer</>}</>;
 };
 export default FooterRendering;

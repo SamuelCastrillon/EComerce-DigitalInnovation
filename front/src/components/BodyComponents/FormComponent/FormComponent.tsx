@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Form, Formik } from "formik";
-import { IButtonForm, IDataConstructorInput, IFormikConstructor } from "./FormInterface";
+import { IButtonForm, Icheckbox, IDataConstructorInput, IFormikConstructor } from "./FormInterface";
 import ImputForm from "./ImputForm/ImputForm";
 import TitleForm from "./TitleForm/TitleForm";
 import ButtonForm from "./ButtonForm/ButtonForm";
@@ -13,8 +13,10 @@ const FormComponent: React.FC<IFormikConstructor> = ({
   titleForm,
   butonsForm,
   dataContructor,
+  dataCheckbox,
 }) => {
   const fieldsForm: IDataConstructorInput[] = dataContructor;
+  const checkBox: Icheckbox[] = dataCheckbox;
   const buttonsForm: IButtonForm[] = butonsForm;
   return (
     <>
@@ -33,6 +35,14 @@ const FormComponent: React.FC<IFormikConstructor> = ({
                 />
               );
             })}
+          {/* {
+            checkBox.length > 0 && (
+              <div className="">
+              {checkBox.map((data, i)=>{
+                return <input key={i} type={data.type} />
+              })}
+              </div>)
+          } */}
 
           {butonsForm.map((data, i) => {
             return <ButtonForm key={i} name={data.name} type={data.type} />;
