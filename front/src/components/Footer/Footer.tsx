@@ -6,22 +6,26 @@ const Footer: React.FC = () => {
   const UlData: IFooterUl[] = FooterData;
 
   return (
-    <footer className="flex mt-10 mb-10">
-      <div className="w-1/2 flex justify-around">
+    <footer className="flex items-center w-[90%] h-[300px] p-5 mt-5 mb-10 rounded-md bg-white">
+      <div className="flex justify-around w-1/2">
         {UlData.map((element, i: number) => {
           return <FooterUl key={i} title={element.title} ulElements={element.ulElements} />;
         })}
       </div>
       <div className="w-1/2">
         <form>
-          <h3></h3>
-          <button></button>
-          <button></button>
-          <hr />
-          <label></label>
-          <input></input>
-          <button></button>
-          <hr />
+          <h3>Get the best offer</h3>
+          <div className="flex gap-5">
+            <button type="button">Create Acount</button>
+            <button type="button">Sing in</button>
+          </div>
+          <hr className="w-full h-[1px] mt-10 border-none bg-lime-600" />
+          <div className="flex flex-col">
+            <label>Subscribe to receive discounts!</label>
+            <input type="email"></input>
+          </div>
+          <button type="submit">Subscribe</button>
+          <hr className="w-full h-[1px] mt-10 border-none bg-lime-600" />
           <strong></strong>
         </form>
       </div>

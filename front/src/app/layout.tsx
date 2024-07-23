@@ -16,10 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex flex-col justify-center">
+      <body className="flex flex-col items-center w-screen font-sans text-gray-600 bg-gray-200">
         <HeaderComponent />
         <main>{children}</main>
-        <hr className="border-none h-1 bg-lime-600 mt-5 mb-5" />
+        <hr className="w-full h-[2px] mt-10 border-none bg-lime-600" />
         <FooterRendering>
           <Footer />
         </FooterRendering>

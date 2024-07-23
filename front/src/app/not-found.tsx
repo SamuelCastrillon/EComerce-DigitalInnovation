@@ -1,6 +1,6 @@
 import NotFoundView from "@/views/NotFound/NotFoundView";
 
-const NotFound = () => {
+const NotFound: React.FC = () => {
   return <NotFoundView />;
 };
 
