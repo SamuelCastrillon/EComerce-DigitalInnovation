@@ -1,7 +1,7 @@
-import SingInView from "@/views/SignIn/SingInView";
+import SignInView from "@/views/SignIn/SignInView";
 import React from "react";
 
 const page = () => {
-  return <SingInView />;
+  return <SignInView />;
 };
 export default page;

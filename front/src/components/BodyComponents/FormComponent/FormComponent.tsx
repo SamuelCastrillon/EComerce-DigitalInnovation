@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Form, Formik } from "formik";
 import { IDataConstructorInput, IFormikConstructor } from "./FormInterface";
@@ -14,7 +13,7 @@ const FormComponent: React.FC<IFormikConstructor> = ({
 
   return (
     <Formik initialValues={iniValues} validationSchema={valiSchema} onSubmit={handelerSubmit}>
-      <Form>
+      <Form className="flex flex-wrap w-[600px] gap-4 p-5 m-5 justify-evenly bg-gray-300 rounded-md">
         {fieldsForm.length > 0 &&
           fieldsForm.map((fileld, i) => {
             return (
