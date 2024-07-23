@@ -1,7 +1,7 @@
 import React from "react";
 
 const CreateAccountView = () => {
-  return <div>CreateAccountView</div>;
+  return <section>CreateAccountView</section>;
 };
 
 export default CreateAccountView;

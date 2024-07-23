@@ -1,4 +1,4 @@
-import CreateAccountView from "@/views/CreateAaccount/CreateAccountView";
+import CreateAccountView from "@/views/CreateAccount/CreateAccountView";
 import React from "react";
 
 const page = () => {

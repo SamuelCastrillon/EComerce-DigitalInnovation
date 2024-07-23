@@ -12,10 +12,12 @@
     "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
     "client-only": "^0.0.1",
+    "formik": "^2.4.6",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
-    "server-only": "^0.0.1"
+    "server-only": "^0.0.1",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/node": "^20",
