@@ -1,4 +1,4 @@
-import ProductDetailsCard from "@/components/BodyComponents/ProductDetailsCard/ProductDetailsCard";
+import ProductDetailsCard from "@/components/BodyComponents/ProductsComponents/ProductDetailsCard/ProductDetailsCard";
 import getProductById from "@/helpers/getProductById";
 import { IProduct } from "@/interfaces/products.interface";
 import React from "react";

@@ -1,4 +1,4 @@
-import ProductsList from "@/components/BodyComponents/ProductsList/ProductsList";
+import ProductsList from "@/components/BodyComponents/ProductsComponents/ProductsList/ProductsList";
 import React from "react";
 
 const ShopView = () => {
