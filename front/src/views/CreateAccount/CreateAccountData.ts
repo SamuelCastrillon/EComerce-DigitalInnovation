@@ -6,7 +6,7 @@ import {
 import * as yup from "yup";
 
 export const TitleFormData: ITitleForm = {
-  title: "Sing In",
+  title: "Create Account",
   icone: "URL",
 };
 
@@ -34,4 +34,4 @@ export const InputsFormValues: IDataConstructorInput[] = [
   { LabelText: "Phone", FieldType: "phone", FieldName: "phone", FieldPH: "00000000" },
 ];
 
-export const ButonsSignInForm: IButtonForm[] = [{ name: "Sign In", type: "submit" }];
+export const ButonsSignInForm: IButtonForm[] = [{ name: "Create Account", type: "submit" }];
