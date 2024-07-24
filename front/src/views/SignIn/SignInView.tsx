@@ -7,7 +7,7 @@ import {
   SignInInitialValues,
   SingInSchema,
   TitleFormData,
-} from "./SignInViewData";
+} from "./SignInData";
 
 const SingInView = () => {
   async function handelerSubmit(data: string) {
