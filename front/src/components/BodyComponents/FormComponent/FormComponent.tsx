@@ -22,20 +22,21 @@ const FormComponent: React.FC<IFormikConstructor> = ({
     <>
       <TitleForm title={titleForm.title} icone={titleForm.icone} />
       <Formik initialValues={iniValues} validationSchema={valiSchema} onSubmit={handelerSubmit}>
-        <Form className="flex flex-wrap w-[600px] gap-4 p-5 m-5 justify-evenly bg-gray-300 rounded-md">
-          {fieldsForm.length > 0 &&
-            fieldsForm.map((fileld, i) => {
-              return (
-                <ImputForm
-                  key={i}
-                  LabelText={fileld.LabelText}
-                  FieldName={fileld.FieldName}
-                  FieldType={fileld.FieldType}
-                  FieldPH={fileld.FieldPH}
-                />
-              );
-            })}
-          {/* {
+        <Form className="flex flex-col items-center p-5 w-[600px] m-5 bg-gray-300 rounded-md">
+          <div className="flex flex-wrap gap-4 justify-evenly">
+            {fieldsForm.length > 0 &&
+              fieldsForm.map((fileld, i) => {
+                return (
+                  <ImputForm
+                    key={i}
+                    LabelText={fileld.LabelText}
+                    FieldName={fileld.FieldName}
+                    FieldType={fileld.FieldType}
+                    FieldPH={fileld.FieldPH}
+                  />
+                );
+              })}
+            {/* {
             checkBox.length > 0 && (
               <div className="">
               {checkBox.map((data, i)=>{
@@ -43,6 +44,7 @@ const FormComponent: React.FC<IFormikConstructor> = ({
               })}
               </div>)
           } */}
+          </div>
 
           {butonsForm.map((data, i) => {
             return <ButtonForm key={i} name={data.name} type={data.type} />;

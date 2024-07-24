@@ -8,11 +8,13 @@ import {
   SingInSchema,
   TitleFormData,
 } from "./CreateAccountData";
+import { handelerSubmit } from "./CreateAccoutHandeler";
 
 const CreateAccountView = () => {
-  async function handelerSubmit(data: string) {
-    console.log(data);
-  }
+  // async function handelerSubmit(data: object) {
+
+  //   console.log(data);
+  // }
   return (
     <section>
       <FormComponent
