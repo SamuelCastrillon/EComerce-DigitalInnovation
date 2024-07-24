@@ -1,5 +1,7 @@
 import { IProduct } from "@/interfaces/products.interface";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 class DataProductsClass {
   AllProducts: IProduct[];
 
@@ -8,11 +10,15 @@ class DataProductsClass {
   }
 
   async fetchProducts() {
-    const dataFetch = await fetch("http://localhost:3000/products", {
-      cache: "no-cache",
-    });
-    const dataResponse: IProduct[] = await dataFetch.json();
-    this.AllProducts = dataResponse;
+    try {
+      const dataFetch = await fetch(`${API_URL}/products`, {
+        cache: "no-cache",
+      });
+      const dataResponse: IProduct[] = await dataFetch.json();
+      this.AllProducts = dataResponse;
+    } catch (error: any) {
+      throw new Error(error);
+    }
   }
 
   async getAllProducts() {
