@@ -4,10 +4,11 @@ import {
   ITitleForm,
 } from "@/components/BodyComponents/FormComponent/FormInterface";
 import * as yup from "yup";
+import pageLogo from "@/assets/img/LogoPage.jpg";
 
 export const TitleFormData: ITitleForm = {
   title: "Sing In",
-  icone: "URL",
+  icone: pageLogo.src,
 };
 
 export const SignInInitialValues = {
