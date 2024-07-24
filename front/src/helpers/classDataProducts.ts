@@ -20,19 +20,20 @@ class DataProductsClass {
     return this.AllProducts;
   }
 
-  getProductById(idProduct: number) {
-    const product: IProduct | undefined = this.AllProducts.find((element) => {
-      element.id === idProduct;
-    });
+  async getProductById(idProduct: number) {
+    if (this.AllProducts.length < 1) await this.fetchProducts();
+    const product: IProduct | undefined = this.AllProducts.find(
+      (element) => element.id === idProduct
+    );
     return product;
   }
 
-  getProductsByCategorie(idCategorie: number) {
-    const products = this.AllProducts.find((element) => {
-      element.categoryId === idCategorie;
-    });
-    return products;
-  }
+  // getProductsByCategorie(idCategorie: number) {
+  //   const products = this.AllProducts.find((element) => {
+  //     element.categoryId === idCategorie;
+  //   });
+  //   return products;
+  // }
 }
 
 export const DataToBack = new DataProductsClass();

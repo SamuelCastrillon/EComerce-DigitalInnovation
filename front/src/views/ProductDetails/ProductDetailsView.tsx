@@ -1,5 +1,5 @@
 import ProductDetailsCard from "@/components/BodyComponents/ProductsComponents/ProductDetailsCard/ProductDetailsCard";
-import getProductById from "@/helpers/getProductById";
+import { DataToBack } from "@/helpers/classDataProducts";
 import { IProduct } from "@/interfaces/products.interface";
 import React from "react";
 
@@ -7,8 +7,8 @@ interface IProductId {
   id: number;
 }
 
-const ProductDetailsView: React.FC<IProductId> = ({ id }) => {
-  const productData: IProduct | undefined = getProductById(id);
+const ProductDetailsView: React.FC<IProductId> = async ({ id }) => {
+  const productData: IProduct | undefined = await DataToBack.getProductById(id);
   return <>{productData ? <ProductDetailsCard data={productData} /> : "Error"}</>;
 };
 
