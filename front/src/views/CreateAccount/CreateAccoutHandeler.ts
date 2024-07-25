@@ -1,6 +1,3 @@
-import { METHODS } from "http";
-import { init } from "next/dist/compiled/webpack/webpack";
-
 const URL_API = process.env.NEXT_PUBLIC_API_URL;
 
 interface IUserData {

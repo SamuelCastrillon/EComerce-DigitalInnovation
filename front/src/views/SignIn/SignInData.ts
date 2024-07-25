@@ -12,17 +12,25 @@ export const TitleFormData: ITitleForm = {
 };
 
 export const SignInInitialValues = {
-  userName: "",
+  email: "",
   password: "",
 };
 
 export const SingInSchema = yup.object({
-  userName: yup.string().defined("Required!"),
+  email: yup
+    .string()
+    .matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, "Invalid email")
+    .defined("Required!"),
   password: yup.string().defined("Required!"),
 });
 
 export const InputsFormValues: IDataConstructorInput[] = [
-  { LabelText: "User Name", FieldType: "text", FieldName: "userName", FieldPH: "UserName..." },
+  {
+    LabelText: "User Email",
+    FieldType: "email",
+    FieldName: "email",
+    FieldPH: "example@mail.com",
+  },
   { LabelText: "Password", FieldType: "password", FieldName: "password", FieldPH: "********" },
 ];
 

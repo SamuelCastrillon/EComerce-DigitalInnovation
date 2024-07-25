@@ -8,17 +8,15 @@ import {
   SingInSchema,
   TitleFormData,
 } from "./SignInData";
+import { handelerSubmitSignIn } from "./SignInHandeler";
 
 const SingInView = () => {
-  async function handelerSubmit(data: string) {
-    console.log(data);
-  }
   return (
     <section>
       <FormComponent
         iniValues={SignInInitialValues}
         valiSchema={SingInSchema}
-        handelerSubmit={handelerSubmit}
+        handelerSubmit={handelerSubmitSignIn}
         titleForm={TitleFormData}
         butonsForm={ButonsSignInForm}
         dataContructor={InputsFormValues}
