@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
 
   return (
     <>
-      <footer className="flex items-center w-[95%] h-[300px] p-5 mt-5 gap-10 rounded-t-md bg-lime-950 text-gray-300">
+      <footer className="flex flex-col h-fit md:flex-row items-center w-[95%] md:h-[300px] p-5 mt-5 gap-10 rounded-t-md bg-lime-950 text-gray-300">
         <div className="flex w-1/2 gap-10">
           {UlData.map((element, i: number) => {
             return <FooterUl key={i} title={element.title} ulElements={element.ulElements} />;

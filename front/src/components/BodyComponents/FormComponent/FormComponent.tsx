@@ -22,8 +22,8 @@ const FormComponent: React.FC<IFormikConstructor> = ({
     <>
       <TitleForm title={titleForm.title} icone={titleForm.icone} />
       <Formik initialValues={iniValues} validationSchema={valiSchema} onSubmit={handelerSubmit}>
-        <Form className="flex flex-col items-center p-5 w-[600px] m-5 bg-gray-300 rounded-md">
-          <div className="flex flex-wrap gap-4 justify-evenly">
+        <Form className="flex flex-col items-center p-5 w-fit md:w-[600px] m-5 bg-gray-300 rounded-md">
+          <div className="flex flex-col flex-wrap gap-4 md:flex-row justify-evenly">
             {fieldsForm.length > 0 &&
               fieldsForm.map((fileld, i) => {
                 return (

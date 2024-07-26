@@ -1,6 +1,8 @@
 import React from "react";
 import LogoApp from "./LogoApp/LogoApp";
 import ButtonNav from "./ButtonNav/ButtonNav";
+import { Bars4Icon } from "@heroicons/react/24/solid";
+import { MyDropdown } from "./DropDawMovilNav/DepDowMovilNav";
 
 const NavbarComponent: React.FC = () => {
   return (
@@ -21,7 +23,8 @@ const NavbarComponent: React.FC = () => {
           </button>
         </div>
       </form>
-      <div className="flex gap-4 mr-5 font-bold">
+      <MyDropdown />
+      <div className={` hidden gap-4 mr-5 font-bold md:flex`}>
         <ButtonNav name={"Sign in"} url={"/signIn"} />
         <span>|</span>
         <ButtonNav name={"Create Acount"} url={"/createAccount"} />
