@@ -20,7 +20,7 @@ export async function handelerSubmitSignIn(data: IUserSignIn) {
   try {
     const response = await createNewUser(data);
     if (response.login) alert("User SignIn is Ok");
-    if (response.statusCode === 400) alert("User SignIn Error");
+    if (response.statusCode === 400) alert("User SignIn Error" + response.statusCode);
   } catch (error) {
     console.error(error);
   }

@@ -7,7 +7,7 @@ interface IUserData {
   address: string;
 }
 
-interface IUserDataToForm extends IUserData {
+export interface IUserDataToForm extends IUserData {
   phone: number;
 }
 
@@ -26,7 +26,7 @@ async function createNewUser(userData: IUserToFecht) {
   return await createUserResponse.json();
 }
 
-export async function handelerSubmit(data: IUserDataToForm) {
+export async function parcerData(data: IUserDataToForm) {
   const { name, email, password, address, phone } = data;
   const dataToFecht: IUserToFecht = {
     name: name,
@@ -38,7 +38,8 @@ export async function handelerSubmit(data: IUserDataToForm) {
 
   try {
     const response = await createNewUser(dataToFecht);
-    console.log(response);
+
+    return response;
   } catch (error) {
     console.error(error);
   }

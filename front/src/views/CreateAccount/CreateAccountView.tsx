@@ -8,13 +8,19 @@ import {
   SingInSchema,
   TitleFormData,
 } from "./CreateAccountData";
-import { handelerSubmit } from "./CreateAccoutHandeler";
+import { parcerData, IUserDataToForm } from "./CreateAccoutHandeler";
+import { useRouter } from "next/navigation";
 
 const CreateAccountView = () => {
-  // async function handelerSubmit(data: object) {
+  const router = useRouter();
 
-  //   console.log(data);
-  // }
+  async function handelerSubmit(data: IUserDataToForm) {
+    const response = await parcerData(data);
+    if (response.ok) alert("Create Account is Successfully");
+    if (response.statusCode === 400) alert("Create Account Error" + response.statusCode);
+    router.push("/signIn");
+  }
+
   return (
     <section>
       <FormComponent
