@@ -8,15 +8,21 @@ import {
   SingInSchema,
   TitleFormData,
 } from "./SignInData";
-import { handelerSubmitSignIn } from "./SignInHandeler";
+import { IUserSignIn, postSubmitSignIn } from "./SignInHandeler";
+import { localData } from "@/helpers/classManagementLocalSotorage";
 
 const SingInView = () => {
+  async function handelerSubmit(data: IUserSignIn) {
+    const response = await postSubmitSignIn(data);
+    localData.saveStorage("userData", response);
+  }
+
   return (
     <section>
       <FormComponent
         iniValues={SignInInitialValues}
         valiSchema={SingInSchema}
-        handelerSubmit={handelerSubmitSignIn}
+        handelerSubmit={handelerSubmit}
         titleForm={TitleFormData}
         butonsForm={ButonsSignInForm}
         dataContructor={InputsFormValues}

@@ -1,8 +1,14 @@
 const URL_API = process.env.NEXT_PUBLIC_API_URL;
 
-interface IUserSignIn {
+export interface IUserSignIn {
   email: string;
   password: string;
+}
+
+export interface ISignInResponseOk {
+  login: boolean;
+  user: object;
+  token: string;
 }
 
 async function createNewUser(userData: IUserSignIn) {
@@ -16,11 +22,14 @@ async function createNewUser(userData: IUserSignIn) {
   return await signInUserResponse.json();
 }
 
-export async function handelerSubmitSignIn(data: IUserSignIn) {
+export async function postSubmitSignIn(data: IUserSignIn) {
   try {
     const response = await createNewUser(data);
-    if (response.login) alert("User SignIn is Ok");
-    if (response.statusCode === 400) alert("User SignIn Error" + response.statusCode);
+    if (response.login) {
+      alert("User SignIn is Ok");
+      return response;
+    }
+    if (response.statusCode === 400) alert(`User SignIn Error - ${response.message}`);
   } catch (error) {
     console.error(error);
   }
