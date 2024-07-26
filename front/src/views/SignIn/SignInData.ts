@@ -6,16 +6,12 @@ import {
 import * as yup from "yup";
 import pageLogo from "@/assets/img/LogoPage.jpg";
 
-export const TitleFormData: ITitleForm = {
-  title: "Sing In",
-  icone: pageLogo.src,
-};
-
 export const SignInInitialValues = {
   email: "",
   password: "",
 };
 
+//? Validations Inpusts form
 export const SingInSchema = yup.object({
   email: yup
     .string()
@@ -23,6 +19,12 @@ export const SingInSchema = yup.object({
     .defined("Required!"),
   password: yup.string().defined("Required!"),
 });
+
+//? Data constructor form
+export const TitleFormData: ITitleForm = {
+  title: "Sing In",
+  icone: pageLogo.src,
+};
 
 export const InputsFormValues: IDataConstructorInput[] = [
   {

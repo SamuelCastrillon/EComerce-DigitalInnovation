@@ -7,11 +7,6 @@ import {
 import * as yup from "yup";
 import pageLogo from "@/assets/img/LogoPage.jpg";
 
-export const TitleFormData: ITitleForm = {
-  title: "Create Account",
-  icone: pageLogo.src,
-};
-
 export const SignInInitialValues = {
   name: "",
   email: "",
@@ -20,6 +15,7 @@ export const SignInInitialValues = {
   phone: "",
 };
 
+//? Validations Inpusts form
 export const SingInSchema = yup.object({
   name: yup.string().min(2, "Too Short!").max(40, "Too Long!").defined("Required!"),
   email: yup
@@ -30,6 +26,12 @@ export const SingInSchema = yup.object({
   address: yup.string().defined("Required!"),
   phone: yup.string().min(9, "Invalid Number!").max(12, "Invalid Number!").defined("Required!"),
 });
+
+//? Data constructor form
+export const TitleFormData: ITitleForm = {
+  title: "Create Account",
+  icone: pageLogo.src,
+};
 
 export const InputsFormValues: IDataConstructorInput[] = [
   { LabelText: "User Name", FieldType: "text", FieldName: "name", FieldPH: "UserName..." },
