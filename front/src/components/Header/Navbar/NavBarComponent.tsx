@@ -1,7 +1,6 @@
 import React from "react";
 import LogoApp from "./LogoApp/LogoApp";
 import ButtonNav from "./ButtonNav/ButtonNav";
-import { Bars4Icon } from "@heroicons/react/24/solid";
 import { MyDropdown } from "./DropDawMovilNav/DepDowMovilNav";
 
 const NavbarComponent: React.FC = () => {

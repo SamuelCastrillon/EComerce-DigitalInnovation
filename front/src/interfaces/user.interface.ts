@@ -6,7 +6,7 @@ export interface IUserLoginReq {
 }
 export interface IUserLoginRes {
   login: boolean;
-  user: string;
+  user: object;
   token: string;
 }
 

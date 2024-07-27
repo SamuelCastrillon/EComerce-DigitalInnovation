@@ -1,20 +1,30 @@
+import { IUserLoginRes } from "@/interfaces/user.interface";
+
 class ManagmentLocalStorage {
+  userData: string;
+
+  constructor() {
+    this.userData = "userData";
+  }
+
   toString(dataObjet: object) {
     return JSON.stringify(dataObjet);
   }
 
-  toObject(dataString: string): object {
+  toObject(dataString: string): IUserLoginRes {
     return JSON.parse(dataString);
   }
 
-  saveStorage(key: string, data: object) {
-    localStorage.setItem(key, this.toString(data));
+  saveStorage(data: object) {
+    localStorage.setItem(this.userData, this.toString(data));
   }
 
-  getStorage(key: string): object | void {
+  getStorage(key: string): IUserLoginRes | undefined {
     const getData = localStorage.getItem(key);
     if (getData) return this.toObject(getData);
-    else return console.error("Undefine Key");
+    else {
+      console.error("Undefine Key");
+    }
   }
 
   deletStorage(key: string) {
