@@ -10,11 +10,17 @@ import {
 } from "./SignInData";
 import { IUserSignIn, postSubmitSignIn } from "./SignInHandeler";
 import { localData } from "@/helpers/classManagementLocalSotorage";
+import { useRouter } from "next/navigation";
 
 const SingInView = () => {
+  const router = useRouter();
+
   async function handelerSubmit(data: IUserSignIn) {
     const response = await postSubmitSignIn(data);
-    localData.saveStorage("userData", response);
+    if (response.login) {
+      localData.saveStorage("userData", response);
+      router.push("/home");
+    }
   }
 
   return (

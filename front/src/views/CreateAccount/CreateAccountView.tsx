@@ -16,9 +16,7 @@ const CreateAccountView = () => {
 
   async function handelerSubmit(data: IUserDataToForm) {
     const response = await parcerData(data);
-    if (response.ok) alert("Create Account is Successfully");
-    if (response.statusCode === 400) alert("Create Account Error" + response.statusCode);
-    router.push("/signIn");
+    if (response.email) router.push("/signIn");
   }
 
   return (

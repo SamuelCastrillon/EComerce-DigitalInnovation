@@ -38,8 +38,13 @@ export async function parcerData(data: IUserDataToForm) {
 
   try {
     const response = await createNewUser(dataToFecht);
+    console.log(response);
 
-    return response;
+    if (response.email) {
+      alert("Create Account is Successfully");
+      return response;
+    }
+    if (response.statusCode === 400) alert("Create Account Error" + response.statusCode);
   } catch (error) {
     console.error(error);
   }
