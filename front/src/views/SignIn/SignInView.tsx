@@ -15,7 +15,7 @@ import { AuthContext } from "@/components/Context/GlobalContext";
 
 const SingInView = () => {
   const router = useRouter();
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { setCurrentUser } = useContext(AuthContext);
 
   async function handelerSubmit(data: IUserSignIn) {
     const response = await postSubmitSignIn(data);
