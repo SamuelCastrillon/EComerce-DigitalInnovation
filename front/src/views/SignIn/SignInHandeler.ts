@@ -11,7 +11,7 @@ export interface ISignInResponseOk {
   token: string;
 }
 
-async function createNewUser(userData: IUserSignIn) {
+async function userSignIn(userData: IUserSignIn) {
   const signInUserResponse = await fetch(`${URL_API}/users/login`, {
     method: "POST",
     headers: {
@@ -24,7 +24,7 @@ async function createNewUser(userData: IUserSignIn) {
 
 export async function postSubmitSignIn(data: IUserSignIn) {
   try {
-    const response = await createNewUser(data);
+    const response = await userSignIn(data);
     if (response.login) {
       alert("User SignIn is Ok");
       return response;

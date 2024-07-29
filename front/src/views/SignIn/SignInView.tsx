@@ -20,7 +20,7 @@ const SingInView = () => {
   async function handelerSubmit(data: IUserSignIn) {
     const response = await postSubmitSignIn(data);
     if (response.login) {
-      localData.saveStorage(response);
+      localData.saveStorage(localData.userData, response.user.id, response);
       setCurrentUser(response);
       router.push("/dashboard");
     }

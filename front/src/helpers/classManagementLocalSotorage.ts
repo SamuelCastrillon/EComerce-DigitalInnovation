@@ -2,24 +2,25 @@ import { IUserLoginRes } from "@/interfaces/user.interface";
 
 class ManagmentLocalStorage {
   userData: string;
-
+  userProductOrder: string;
   constructor() {
-    this.userData = "userData";
+    this.userData = "dataUserID:";
+    this.userProductOrder = `productOrderUserID:`;
   }
 
   toString(dataObjet: object) {
     return JSON.stringify(dataObjet);
   }
 
-  toObject(dataString: string): IUserLoginRes {
+  toObject(dataString: string): object {
     return JSON.parse(dataString);
   }
 
-  saveStorage(data: object) {
-    localStorage.setItem(this.userData, this.toString(data));
+  saveStorage(key: string, userID: number, data: {}) {
+    localStorage.setItem(key + userID, this.toString(data));
   }
 
-  getStorage(key: string): IUserLoginRes | undefined {
+  getStorage(key: string): object | undefined {
     const getData = localStorage.getItem(key);
     if (getData) return this.toObject(getData);
     else {
