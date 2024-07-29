@@ -6,6 +6,7 @@ import { Bars4Icon } from "@heroicons/react/24/solid";
 import { useContext, useEffect, useState } from "react";
 import { IDataButtons, NavDataUserSignIn, NavDataUserSignOut } from "../DataButtonsNav";
 import ButtonNav from "../../ButtonNav/ButtonNav";
+import ActionButton from "@/components/PublicComponents/Buttons/ActionButton/ActionButton";
 
 const buttonsStyles = "p-2 rounded hover:bg-lime-900";
 
@@ -36,6 +37,12 @@ export function MyDropdown() {
     console.log(dataUser);
   }, []);
 
+  const logicSignOut = () => {
+    setCurrentUser({});
+    localData.deletStorage(localData.userData);
+    console.log("SignOut");
+  };
+
   return (
     <div className="relative block mr-5 w-fit md:hidden">
       <button onClick={changeMenuStatus}>
@@ -46,6 +53,11 @@ export function MyDropdown() {
           dropDowStatus ? "flex" : "hidden"
         } flex-col z-20`}>
         {currentUser.login ? RenderButtons(NavDataUserSignIn) : RenderButtons(NavDataUserSignOut)}
+        {currentUser.login && (
+          <ActionButton className={buttonsStyles} onClick={logicSignOut}>
+            Sign Out
+          </ActionButton>
+        )}
       </div>
     </div>
   );

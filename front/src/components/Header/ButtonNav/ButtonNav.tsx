@@ -10,7 +10,7 @@ interface IButtonData {
 const ButtonNav: React.FC<IButtonData> = ({ url, className, children }) => {
   return (
     <button className={className}>
-      <Link href={url} className="flex items-center font-bold">
+      <Link href={url} className="flex items-center">
         {children}
       </Link>
     </button>

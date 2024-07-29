@@ -22,7 +22,7 @@ const SingInView = () => {
     if (response.login) {
       localData.saveStorage(response);
       setCurrentUser(response);
-      router.push("/home");
+      router.push("/dashboard");
     }
   }
 
