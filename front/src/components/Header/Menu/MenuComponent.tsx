@@ -5,7 +5,7 @@ import CMenuDrow from "./CatMenuDrow/CatMenuDrow";
 
 const MenuComponent: React.FC = () => {
   return (
-    <menu className="h-8 flex bg-lime-600 text-white gap-5">
+    <menu className="hidden h-8 gap-5 text-white md:flex bg-lime-700">
       <CMenuDrow />
       <ButtonMenu name={"Register"} url={"/register"} />
       <ButtonMenu name={"LogIn"} url={"/login"} />

@@ -2,10 +2,22 @@
 import { AuthContext } from "@/components/Context/GlobalContext";
 import { localData } from "@/helpers/classManagementLocalSotorage";
 import { IUserLoginRes } from "@/interfaces/user.interface";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { Bars4Icon } from "@heroicons/react/24/solid";
-import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
+import { IDataButtons, NavDataUserSignIn, NavDataUserSignOut } from "../DataButtonsNav";
+import ButtonNav from "../../ButtonNav/ButtonNav";
+
+const buttonsStyles = "p-2 rounded hover:bg-lime-900";
+
+const RenderButtons = (data: IDataButtons[]) => {
+  return data.map((e, i) => {
+    return (
+      <ButtonNav key={i} url={e.url} className={buttonsStyles}>
+        {e.name}
+      </ButtonNav>
+    );
+  });
+};
 
 export function MyDropdown() {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
@@ -33,12 +45,7 @@ export function MyDropdown() {
         className={`absolute top-[53px] right-0 h-fit w-[200px] p-2 bg-lime-700 ${
           dropDowStatus ? "flex" : "hidden"
         } flex-col z-20`}>
-        <Link className="block data-[focus]:bg-blue-100" href="/signIn">
-          Sign In
-        </Link>
-        <Link className="block data-[focus]:bg-blue-100 " href="/createAccount">
-          Create Account
-        </Link>
+        {currentUser.login ? RenderButtons(NavDataUserSignIn) : RenderButtons(NavDataUserSignOut)}
       </div>
     </div>
   );
