@@ -39,7 +39,7 @@ export function MyDropdown() {
 
   const logicSignOut = () => {
     setCurrentUser({});
-    localData.deletStorage(localData.userData);
+    localData.deletStorage(localData.userData + currentUser.user.id);
     console.log("SignOut");
   };
 
