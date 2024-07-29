@@ -1,12 +1,12 @@
 "use client";
 import { ReactNode, createContext, useState } from "react";
 
-const AuthContext = createContext(null);
+export const AuthContext = createContext({});
 
 const GlobalContext = ({ children }: { children: ReactNode }) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState({});
   return (
-    <AuthContext.Provider<T>
+    <AuthContext.Provider
       value={{
         currentUser,
         setCurrentUser,

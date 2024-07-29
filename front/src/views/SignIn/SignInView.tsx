@@ -1,6 +1,6 @@
 "use client";
 import FormComponent from "@/components/BodyComponents/FormComponent/FormComponent";
-import React from "react";
+import React, { useContext } from "react";
 import {
   ButonsSignInForm,
   InputsFormValues,
@@ -11,14 +11,17 @@ import {
 import { IUserSignIn, postSubmitSignIn } from "./SignInHandeler";
 import { localData } from "@/helpers/classManagementLocalSotorage";
 import { useRouter } from "next/navigation";
+import { AuthContext } from "@/components/Context/GlobalContext";
 
 const SingInView = () => {
   const router = useRouter();
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
 
   async function handelerSubmit(data: IUserSignIn) {
     const response = await postSubmitSignIn(data);
     if (response.login) {
       localData.saveStorage(response);
+      setCurrentUser(response);
       router.push("/home");
     }
   }
