@@ -1,5 +1,5 @@
 "use client";
-import { AuthContext } from "@/components/Context/GlobalContext";
+import { AuthContext, CartContext } from "@/components/Context/GlobalContext";
 import { localData } from "@/helpers/classManagementLocalSotorage";
 import { ICreateOrderReq } from "@/interfaces/oerder.interface";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import React, { useContext } from "react";
 
 const ButtonAddToCart = ({ id }: { id: number }) => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { currentCart, setCurrentCart } = useContext(CartContext);
 
   function addProductToCar() {
     let userOrder = localData.getStorage(localData.userProductOrder + currentUser.user.id);
@@ -18,6 +19,7 @@ const ButtonAddToCart = ({ id }: { id: number }) => {
     }
     userOrder.products.push(id);
     localData.saveStorage(localData.userProductOrder, currentUser.user.id, userOrder);
+    setCurrentCart(userOrder);
   }
 
   const buttonsStyles = "p-1 font-semibold text-white rounded w-44 bg-lime-800";
