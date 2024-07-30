@@ -16,8 +16,10 @@ class ManagmentLocalStorage {
     return JSON.parse(dataString);
   }
 
-  saveStorage(key: string, userID: number, data: {}) {
-    localStorage.setItem(key + userID, this.toString(data));
+  saveStorage(key: string, userID, data: {}) {
+    userID
+      ? localStorage.setItem(key + userID, this.toString(data))
+      : localStorage.setItem(key, this.toString(data));
   }
 
   getStorage(key: string): object | undefined {

@@ -26,7 +26,6 @@ export function MyDropdown() {
 
   function changeMenuStatus() {
     setDropDowStatus(!dropDowStatus);
-    console.log(dropDowStatus);
   }
 
   useEffect(() => {
@@ -34,7 +33,6 @@ export function MyDropdown() {
     if (dataUser) {
       setCurrentUser(dataUser);
     }
-    console.log(dataUser);
   }, []);
 
   const logicSignOut = () => {

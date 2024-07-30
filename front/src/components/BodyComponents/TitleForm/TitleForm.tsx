@@ -1,5 +1,5 @@
 import React from "react";
-import { ITitleForm } from "../FormInterface";
+import { ITitleForm } from "../FormComponent/FormInterface";
 
 const TitleForm: React.FC<ITitleForm> = ({ title, icone }) => {
   return (
