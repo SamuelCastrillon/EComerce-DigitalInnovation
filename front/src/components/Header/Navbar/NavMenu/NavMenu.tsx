@@ -60,7 +60,9 @@ const NavMenu = () => {
             }`}
             onClick={dropDawCart}>
             <ShoppingCartIcon className="w-[25px] h-auto text-white" />
-            <span className="hidden md:block">${cartGeneralStatus.totalPrice}</span>
+            {cartGeneralStatus.totalPrice > 0 && (
+              <span className="hidden md:block">${cartGeneralStatus.totalPrice}</span>
+            )}
             <ChevronDownIcon className="w-[25px] h-auto text-white" />
             {cartGeneralStatus.itemsLength > 0 && (
               <div className="top-0 left-[25px] w-4 h-4 bg-red-700 font-normal text-base rounded-[50%] flex items-center justify-center absolute">

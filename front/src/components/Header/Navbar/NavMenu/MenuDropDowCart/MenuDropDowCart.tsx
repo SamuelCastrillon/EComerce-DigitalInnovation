@@ -73,9 +73,10 @@ const MenuDropDowCart = ({
       udateStatusCart(currentCart.products, allProducts);
     }
   }, [currentCart, allProducts]);
+
   return (
     <>
-      {currentCart.userId ? (
+      {currentCart.products > 0 ? (
         <>
           <div className="flex justify-between gap-10">
             <strong>Your shopping cart</strong>
