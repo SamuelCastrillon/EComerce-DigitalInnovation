@@ -5,10 +5,11 @@ import ActionButton from "@/components/PublicComponents/Buttons/ActionButton/Act
 import { localData } from "@/helpers/classManagementLocalSotorage";
 import NavbarButtonsPublic from "./MenuButtonsComponents/NavbarButtonsPublic";
 import NavbarButtonsUserSignIn from "./MenuButtonsComponents/NavbarButtonsUserSignIn";
-import { ArrowLeftStartOnRectangleIcon, UserIcon } from "@heroicons/react/24/outline";
-import { ChevronDownIcon, ShoppingCartIcon } from "@heroicons/react/24/solid";
+import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/24/solid";
 import { usePathname } from "next/navigation";
 import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
+import MenuDropDowCart from "./MenuDropDowCart/MenuDropDowCart";
 
 const NavMenu = () => {
   const pathname = usePathname();
@@ -28,11 +29,11 @@ const NavMenu = () => {
     shetShowCart(false);
   }, [pathname]);
 
-  function drpDawCart() {
+  function dropDawCart() {
     shetShowCart(!showCart);
     shetShowMenu(false);
   }
-  function drpDawMenu() {
+  function dropDawMenu() {
     shetShowMenu(!showMenu);
     shetShowCart(false);
   }
@@ -44,31 +45,53 @@ const NavMenu = () => {
 
   return (
     <section className="flex gap-3 mr-5 ">
-      {currentUser.login ? (
-        <ActionButton
-          className={"flex p-2 rounded hover:bg-lime-900 font-bold items-center gap-1"}
-          onClick={drpDawCart}>
-          <ShoppingCartIcon className="w-[25px] h-auto text-white" />
-          <span className="hidden md:block">Cart</span>
-          <ChevronDownIcon className="w-[25px] h-auto text-white" />
-        </ActionButton>
-      ) : (
-        <NavigateButton
-          href="/signIn"
-          className="flex items-center gap-1 p-2 font-bold rounded hover:bg-lime-900">
-          <ShoppingCartIcon className="w-[25px] h-auto text-white" />
-          <span className="hidden md:block">Cart</span>
-        </NavigateButton>
-      )}
+      {/* 
+      //? Conditional rendering Button cart toggle show
+       */}
+      {pathname != "/dashboard/cart" &&
+        (currentUser.login ? (
+          <ActionButton
+            className={"flex p-2 rounded hover:bg-lime-900 font-bold items-center gap-1"}
+            onClick={dropDawCart}>
+            <ShoppingCartIcon className="w-[25px] h-auto text-white" />
+            <span className="hidden md:block">Cart</span>
+            <ChevronDownIcon className="w-[25px] h-auto text-white" />
+          </ActionButton>
+        ) : (
+          <NavigateButton
+            href="/signIn"
+            className="flex items-center gap-1 p-2 font-bold rounded hover:bg-lime-900">
+            <ShoppingCartIcon className="w-[25px] h-auto text-white" />
+            <span className="hidden md:block">Cart</span>
+          </NavigateButton>
+        ))}
 
+      {/* 
+      //? Hide or show menu button
+       */}
       <ActionButton
         className={"flex p-2 rounded hover:bg-lime-900 font-bold items-center gap-1"}
-        onClick={drpDawMenu}>
+        onClick={dropDawMenu}>
         <UserIcon className="w-[25px] h-auto text-white" />
         <span className="hidden md:block">Account</span>
         <ChevronDownIcon className="w-[25px] h-auto text-white" />
       </ActionButton>
 
+      {/* 
+      //? DropDaw Cart
+       */}
+      {currentUser.login && (
+        <article
+          className={`${
+            showCart ? "flex" : "hidden"
+          } flex-col gap-1 p-5 absolute top-[55px] right-0 bg-lime-800 z-20 rounded sm:mr-10`}>
+          <MenuDropDowCart currentUserId={currentUser.user.id} />
+        </article>
+      )}
+
+      {/* 
+      //? DropDaw menu
+       */}
       <menu
         className={`${
           showMenu ? "flex" : "hidden"
