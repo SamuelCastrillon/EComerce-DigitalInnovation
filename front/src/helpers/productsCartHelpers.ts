@@ -6,7 +6,7 @@ export function shearchProductsCartById(
 ): IProduct[] {
   const carProducts: IProduct[] = [];
 
-  productsCart.forEach((productId) => {
+  productsCart.forEach((productId: number) => {
     const productResult = allProducts.find((product) => {
       return product.id === productId;
     });
