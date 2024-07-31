@@ -1,13 +1,14 @@
 "use client";
-import { AuthContext, CartContext } from "@/components/Context/GlobalContext";
+import { AuthContext, CartContext, ProductsContext } from "@/components/Context/GlobalContext";
 import { localData } from "@/helpers/classManagementLocalSotorage";
-import { dataToOrderSumary } from "@/helpers/shearchProductsCartById";
+import { dataToOrderSumary } from "@/helpers/productsCartHelpers";
 import { IProduct } from "@/interfaces/products.interface";
 import React, { useContext, useEffect, useState } from "react";
 
-const OrderSummary = ({ allProducts }: { allProducts: IProduct[] }) => {
+const OrderSummary = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const { currentCart, setCurrentCart } = useContext(CartContext);
+  const { allProducts, setAllProducts } = useContext(ProductsContext);
   const [sumaryData, setSumaryData] = useState({ totalPrice: 0, productsNumber: 0 });
 
   useEffect(() => {

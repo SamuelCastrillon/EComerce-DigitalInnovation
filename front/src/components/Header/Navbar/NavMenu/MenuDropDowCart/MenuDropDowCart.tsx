@@ -1,15 +1,67 @@
 "use client";
-import { CartContext } from "@/components/Context/GlobalContext";
+import { CartContext, ProductsContext } from "@/components/Context/GlobalContext";
 import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
+import { DataToBack } from "@/helpers/classDataProducts";
 import { localData } from "@/helpers/classManagementLocalSotorage";
-import React, { useContext, useEffect } from "react";
+import { IProduct } from "@/interfaces/products.interface";
+import React, { useContext, useEffect, useState } from "react";
+import MenuSmallProductCard from "./MenuSmallProductCard/MenuSmallProductCard";
 
-const MenuDropDowCart = ({ currentUserId }) => {
+interface IGeneralDataCart {
+  itemsLength: number;
+  totalPrice: number;
+}
+
+const MenuDropDowCart = ({
+  currentUserId,
+  cartGeneralStatus,
+  setCartGeneralStatus,
+}: {
+  cartGeneralStatus: IGeneralDataCart;
+}) => {
   const { currentCart, setCurrentCart } = useContext(CartContext);
+  const { allProducts, setAllProducts } = useContext<IProduct[]>(ProductsContext);
+  const [productsToCart, setProductsToCart] = useState<IProduct[]>([]);
 
-  function checkCartProducts() {
+  async function checkCartProducts() {
     !currentCart.userId &&
       setCurrentCart(localData.getStorage(localData.userProductOrder + currentUserId));
+    setAllProducts(await DataToBack.getAllProducts());
+  }
+
+  function udateStatusCart(idArray: number[], productsAarray: IProduct[]) {
+    const products: IProduct[] | undefined = [];
+    const dataCart: IGeneralDataCart = {
+      itemsLength: 0,
+      totalPrice: 0,
+    };
+    idArray.forEach((productId: number) => {
+      const product = productsAarray.find((product: IProduct) => {
+        return product.id === productId;
+      });
+      if (product) {
+        products.push(product);
+        dataCart.totalPrice += product.price;
+      }
+    });
+    console.log("ProductsCart: ", products);
+    dataCart.itemsLength = products.length;
+    setProductsToCart(products);
+    setCartGeneralStatus(dataCart);
+  }
+
+  function handelerDelet(id: number) {
+    const currentUserId = currentCart.userId;
+    const newUserOrder = {
+      userId: currentUserId,
+      products: [],
+    };
+    currentCart.products.forEach(
+      (idProduct: number) => idProduct != id && newUserOrder.products.push(idProduct)
+    );
+    localData.deletStorage(localData.userProductOrder + currentUserId);
+    localData.saveStorage(localData.userProductOrder, currentUserId, newUserOrder);
+    setCurrentCart(newUserOrder);
   }
 
   useEffect(() => {
@@ -17,24 +69,30 @@ const MenuDropDowCart = ({ currentUserId }) => {
   }, []);
 
   useEffect(() => {
-    console.log(currentCart);
-  }, [currentCart]);
-
+    if (currentCart.userId && allProducts.length > 0) {
+      udateStatusCart(currentCart.products, allProducts);
+    }
+  }, [currentCart, allProducts]);
   return (
     <>
       {currentCart.userId ? (
         <>
           <div className="flex justify-between gap-10">
             <strong>Your shopping cart</strong>
-            <span className="text-gray-400">{4}Intems</span>
+            <span className="text-gray-400">{productsToCart.length} Intems</span>
           </div>
           <hr className=" border-lime-400" />
-          <div></div>
+          <div className="flex flex-col gap-4 p-2">
+            {productsToCart.length > 0 &&
+              productsToCart.map((product: IProduct, i: number) => {
+                return <MenuSmallProductCard key={i} product={product} onClick={handelerDelet} />;
+              })}
+          </div>
           <hr className=" border-lime-400" />
           <div>
             <div className="flex justify-between">
               <span>Total</span>
-              <span>${"price"}</span>
+              <span className="font-bold">${cartGeneralStatus.totalPrice}</span>
             </div>
           </div>
           <NavigateButton

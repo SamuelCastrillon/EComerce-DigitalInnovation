@@ -7,12 +7,12 @@ const NavDataUserSignOut: IDataButtons[] = [
   {
     name: "My Accout",
     url: "/dashboard",
-    icone: <UserCircleIcon className="w-[35px] h-auto text-white mr-1" />,
+    icone: <UserCircleIcon className="w-[25px] h-auto text-white mr-1" />,
   },
   {
     name: "My orders",
     url: "/dashboard/orders",
-    icone: <ShoppingBagIcon className="w-[35px] h-auto text-white mr-1" />,
+    icone: <ShoppingBagIcon className="w-[25px] h-auto text-white mr-1" />,
   },
 ];
 
