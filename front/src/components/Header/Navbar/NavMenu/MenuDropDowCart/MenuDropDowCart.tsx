@@ -76,7 +76,7 @@ const MenuDropDowCart = ({
 
   return (
     <>
-      {currentCart.products > 0 ? (
+      {productsToCart.length > 0 ? (
         <>
           <div className="flex justify-between gap-10">
             <strong>Your shopping cart</strong>
