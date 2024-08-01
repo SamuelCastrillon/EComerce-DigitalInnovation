@@ -22,7 +22,7 @@ export const SingInSchema = yup.object({
 
 //? Data constructor form
 export const TitleFormData: ITitleForm = {
-  title: "Sing In",
+  title: "Sign In",
   icone: pageLogo.src,
 };
 

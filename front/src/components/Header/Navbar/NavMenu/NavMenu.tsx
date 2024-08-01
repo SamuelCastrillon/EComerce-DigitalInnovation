@@ -7,11 +7,12 @@ import NavbarButtonsPublic from "./MenuButtonsComponents/NavbarButtonsPublic";
 import NavbarButtonsUserSignIn from "./MenuButtonsComponents/NavbarButtonsUserSignIn";
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/24/solid";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
 import MenuDropDowCart from "./MenuDropDowCart/MenuDropDowCart";
 
 const NavMenu = () => {
+  const router = useRouter();
   const pathname = usePathname();
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const [cartGeneralStatus, setCartGeneralStatus] = useState({
@@ -44,6 +45,7 @@ const NavMenu = () => {
   const logicSignOut = () => {
     setCurrentUser({});
     localData.deletStorage(localData.userData);
+    router.push("/home");
     console.log("SignOut");
   };
 

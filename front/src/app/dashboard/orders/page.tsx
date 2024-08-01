@@ -1,7 +1,9 @@
+import HomeView from "@/views/Home/HomeView";
+import OrdersView from "@/views/UserDashboard/Orders/OrdersView";
 import React from "react";
 
-const page = () => {
-  return <div>page</div>;
+const page: React.FC = () => {
+  return <OrdersView />;
 };
 
 export default page;

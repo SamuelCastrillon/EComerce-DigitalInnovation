@@ -2,15 +2,15 @@ import { IFooterUl } from "./FooterUl/IFooterUl";
 
 export const FooterData: IFooterUl[] = [
   {
-    title: "COMPAÑIA",
-    ulElements: ["Sobre Nosotros", "Blog", "Cupon de Descuento"],
+    title: "COMPANY",
+    ulElements: ["About Us", "Blog", "Discount Coupon"],
   },
   {
-    title: "PEDIDOS Y COMPRAS",
-    ulElements: ["Estado del Pedido", "Historial de Compras", "Metodos de Pago"],
+    title: "ORDERS AND PURCHASES",
+    ulElements: ["Order Status", "Purchase History", "Payment Methods"],
   },
   {
-    title: "SOPORTE",
-    ulElements: ["Contacto con Soporte", "PQR", "Centros de Servicio"],
+    title: "SUPPORT",
+    ulElements: ["Contact Support", "PQR", "Service Centers"],
   },
 ];

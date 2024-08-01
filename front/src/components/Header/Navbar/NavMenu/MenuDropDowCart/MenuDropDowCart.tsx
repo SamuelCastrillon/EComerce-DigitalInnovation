@@ -99,7 +99,7 @@ const MenuDropDowCart = ({
           </div>
           <NavigateButton
             href="/dashboard/cart"
-            className="w-full py-2 rounded-sm h-fit bg-lime-500">
+            className="w-full py-2 rounded-sm h-fit bg-lime-500 text-lime-950">
             See your cart
           </NavigateButton>
         </>
@@ -108,7 +108,7 @@ const MenuDropDowCart = ({
           <strong className=""> Add your products to cart</strong>
           <NavigateButton
             href="/shop/products/all"
-            className="w-full py-2 rounded-sm h-fit bg-lime-500">
+            className="w-full py-2 rounded-sm h-fit bg-lime-500 text-lime-950">
             See your cart
           </NavigateButton>
         </>
