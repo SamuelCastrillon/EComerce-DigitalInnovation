@@ -1,5 +1,4 @@
 //?User login interfaces
-
 export interface IUserLoginReq {
   email: string;
   password: string;
@@ -11,11 +10,16 @@ export interface IUserLoginRes {
 }
 
 //?User Register interfaces
-
 export interface IUserRegisterReq {
   name: string;
   email: string;
   password: string;
   address: string;
   phone: string;
+}
+
+//? User active
+export interface IUser extends IUserRegisterReq {
+  id: number;
+  role: string;
 }
