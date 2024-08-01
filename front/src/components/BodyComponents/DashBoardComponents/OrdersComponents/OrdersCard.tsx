@@ -3,8 +3,8 @@ import React from "react";
 
 const OrdersCard = () => {
   return (
-    <div className="flex flex-wrap items-center p-6 bg-white gap-y-4">
-      <dl className="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
+    <div className="flex flex-wrap items-center justify-between gap-6 p-6 bg-white">
+      <dl className="w-1/3 lg:w-auto">
         <dt className="text-base font-medium text-gray-500 ">Order ID:</dt>
         <dd className="mt-1.5 text-base font-semibold text-gray-900 ">
           <a href="#" className="hover:underline">
@@ -13,19 +13,19 @@ const OrdersCard = () => {
         </dd>
       </dl>
 
-      <dl className="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
+      <dl className="w-1/3 lg:w-auto ">
         <dt className="text-base font-medium text-gray-500">Date:</dt>
         <dd className="mt-1.5 text-base font-semibold text-gray-900">20.12.2023</dd>
       </dl>
 
-      <dl className="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
+      <dl className="w-1/3 lg:w-auto ">
         <dt className="text-base font-medium text-gray-500">Price:</dt>
         <dd className="mt-1.5 text-base font-semibold text-gray-900 ">$4,756</dd>
       </dl>
 
-      <dl className="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
+      <dl className="w-1/3 lg:w-auto ">
         <dt className="text-base font-medium text-gray-500 ">Status:</dt>
-        <dd className="me-2 mt-1.5 inline-flex items-center rounded bg-primary-100 px-2.5 py-0.5 text-xs font-medium text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+        <dd className="flex mt-1.5 items-center font-medium w-fit">
           <svg
             className="w-3 h-3 me-1"
             aria-hidden="true"
@@ -46,13 +46,11 @@ const OrdersCard = () => {
         </dd>
       </dl>
 
-      <div className="grid w-full gap-4 sm:grid-cols-2 lg:flex lg:w-64 lg:items-center lg:justify-end">
-        <Link
-          href="#"
-          className="inline-flex justify-center w-full px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 lg:w-auto">
-          View details
-        </Link>
-      </div>
+      <Link
+        href="#"
+        className="inline-flex justify-center w-full px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 lg:w-auto">
+        View details
+      </Link>
     </div>
   );
 };
