@@ -9,7 +9,7 @@ interface IOrder {
   setModalStatus: Function;
 }
 
-const OrderDetailsCard: React.FC<IOrder> = ({ data, setModalStatus }) => {
+const OrderDetailsModal: React.FC<IOrder> = ({ data, setModalStatus }) => {
   const { id, date, products, status } = data;
 
   function handelerClose() {
@@ -41,7 +41,7 @@ const OrderDetailsCard: React.FC<IOrder> = ({ data, setModalStatus }) => {
         </dl>
       </div>
       <hr className="my-2 border-lime-950" />
-      <div className="flex flex-col items-center justify-center gap-2 bg-white rounded-lg">
+      <div className="flex flex-col items-center justify-center gap-2 p-4 bg-white rounded-lg">
         {products.map((product: IProduct) => {
           return <OrderProductCard key={product.id} data={product} />;
         })}
@@ -50,4 +50,4 @@ const OrderDetailsCard: React.FC<IOrder> = ({ data, setModalStatus }) => {
   );
 };
 
-export default OrderDetailsCard;
+export default OrderDetailsModal;

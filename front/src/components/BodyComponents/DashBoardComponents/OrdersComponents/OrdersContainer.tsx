@@ -4,7 +4,7 @@ import OrdersCard from "./OrdersCard";
 import { AuthContext } from "@/components/Context/GlobalContext";
 import { fetchUserOrders } from "@/helpers/userOrdersHelpers";
 import { IOrderResponce } from "@/interfaces/oerder.interface";
-import OrderDetailsCard from "./OrderDetailsCard/OrderDetailsCard";
+import OrderDetailsModal from "./OrderDetailsModal/OrderDetailsModal";
 
 const OrdersContainer = () => {
   const { currentUser } = useContext(AuthContext);
@@ -87,7 +87,7 @@ const OrdersContainer = () => {
         <section className="absolute z-10 w-screen h-screen p-10 bg-opacity-55 bg-slate-800">
           <div className="w-full px-4 mx-auto 2xl:px-0 md:w-[80%] lg:w-[60%]">
             {orderSelect != 0 && userOrdersData && (
-              <OrderDetailsCard
+              <OrderDetailsModal
                 data={userOrdersData.find((order) => (order.id = orderSelect))}
                 setModalStatus={setShowOrderModal}
               />

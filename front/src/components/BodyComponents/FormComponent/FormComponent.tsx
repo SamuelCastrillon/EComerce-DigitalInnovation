@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { Form, Formik } from "formik";
-import { IButtonForm, IDataConstructorInput, IFormikConstructor } from "./FormInterface";
+import { IDataConstructorInput, IFormikConstructor } from "./FormInterface";
 import ImputForm from "./ImputForm/ImputForm";
 import TitleForm from "../TitleForm/TitleForm";
 import ButtonForm from "./ButtonForm/ButtonForm";
