@@ -6,8 +6,11 @@ export function filterProductsByCategory(products: IProduct[], categorieParam: s
   const Categorie = categoriesList.find((categorie) => {
     return categorie.name.toLowerCase() === categorieParam;
   });
-  const productsFulterer = Products.filter(
-    (product: IProduct) => product.categoryId === Categorie.id
-  );
-  return productsFulterer;
+  if (Categorie) {
+    const productsFulterer = Products.filter(
+      (product: IProduct) => product.categoryId === Categorie.id
+    );
+
+    return productsFulterer;
+  }
 }

@@ -15,9 +15,20 @@ const ProductsList: React.FC<IProductslist> = ({ dataRendering, filterParams }) 
   const Products: IProduct[] = dataRendering;
   const Filter: string[] = filterParams.filters;
   const ProductsToRender = filterProductsByCategory(Products, Filter[0]);
+  console.log(filterParams);
+  if (Filter[0] === "all") {
+    return (
+      <section className="w-[95%] m-auto p-5 mt-5 rounded flex flex-wrap justify-center gap-5 bg-white ">
+        {Products.map((e: IProductCard) => {
+          return <ProductCard key={e.id} id={e.id} name={e.name} price={e.price} image={e.image} />;
+        })}
+      </section>
+    );
+  }
+
   return (
     <section className="w-[95%] m-auto p-5 mt-5 rounded flex flex-wrap justify-center gap-5 bg-white ">
-      {ProductsToRender.length ? (
+      {ProductsToRender ? (
         ProductsToRender.map((e: IProductCard) => {
           return <ProductCard key={e.id} id={e.id} name={e.name} price={e.price} image={e.image} />;
         })

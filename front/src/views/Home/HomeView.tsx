@@ -6,11 +6,14 @@ import { DataToBack } from "@/helpers/classDataProducts";
 import React from "react";
 
 export default async function HomeView() {
+  const filterParams = {
+    filters: ["all"],
+  };
   return (
     <>
       <HomeCarousel />
       <CategoriesContainer />
-      <ProductsList dataRendering={await DataToBack.getAllProducts()} />
+      <ProductsList dataRendering={await DataToBack.getAllProducts()} filterParams={filterParams} />
     </>
   );
 }
