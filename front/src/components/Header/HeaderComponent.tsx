@@ -4,7 +4,7 @@ import MenuComponent from "./Menu/MenuComponent";
 
 const HeaderComponent = () => {
   return (
-    <header className="w-full">
+    <header className="w-fit">
       <NavbarComponent />
       <MenuComponent />
     </header>

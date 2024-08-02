@@ -2,12 +2,30 @@ import { IOrderResponce } from "@/interfaces/oerder.interface";
 import Link from "next/link";
 import React from "react";
 
-const OrdersCard = ({ dataOrder }: { dataOrder: IOrderResponce }) => {
+interface IOrdersCard {
+  dataOrder: IOrderResponce;
+  orderDetailsStatus: boolean;
+  setOrderDetailsStatus: Function;
+  setOrderID: Function;
+}
+
+const OrdersCard: React.FC<IOrdersCard> = ({
+  dataOrder,
+  orderDetailsStatus,
+  setOrderDetailsStatus,
+  setOrderID,
+}) => {
   const { id, date, products, status } = dataOrder;
   const price = products.reduce((totalPrice, product) => {
     return (totalPrice += product.price);
   }, 0);
   const dateShort = date.split("T");
+
+  function handelerDetails() {
+    setOrderDetailsStatus(!orderDetailsStatus);
+    setOrderID(id);
+  }
+
   return (
     <div className="flex flex-wrap items-center justify-between gap-6 p-6 bg-white">
       <dl className="w-1/3 lg:w-auto">
@@ -52,11 +70,11 @@ const OrdersCard = ({ dataOrder }: { dataOrder: IOrderResponce }) => {
         </dd>
       </dl>
 
-      <Link
-        href="#"
-        className="inline-flex justify-center w-full px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 lg:w-auto">
+      <button
+        onClick={handelerDetails}
+        className="inline-flex justify-center w-full px-3 py-2 text-sm font-medium text-gray-300 border border-gray-400 rounded-lg bg-lime-950 hover:bg-lime-800 hover:text-primary-700 focus:z-10 lg:w-auto">
         View details
-      </Link>
+      </button>
     </div>
   );
 };

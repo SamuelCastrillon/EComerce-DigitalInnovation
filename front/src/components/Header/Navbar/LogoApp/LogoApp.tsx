@@ -7,11 +7,11 @@ const poppins = Poppins({ weight: "600", style: "normal", subsets: ["latin"] });
 const LogoApp: React.FC = () => {
   return (
     <Link href="/home">
-      <div className="flex items-center gap-1 ml-1">
-        <img src={LogoPage.src} alt="Logo" className="h-[54px] w-auto rounded-[50%]" />
-        <div className="text-xl">
-          <span className={` hidden md:block ${poppins.className} `}>DigitaLInnovation</span>
-        </div>
+      <div className="flex items-center gap-1 w-fit ">
+        <img src={LogoPage.src} alt="Logo" className="h-[54px] w-[54px] rounded-[50%]" />
+        <strong className={`hidden md:flex ${poppins.className} w-[180px] text-xl`}>
+          DigitaLInnovation
+        </strong>
       </div>
     </Link>
   );

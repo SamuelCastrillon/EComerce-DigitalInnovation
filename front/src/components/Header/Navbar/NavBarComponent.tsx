@@ -5,7 +5,7 @@ import NavMenu from "./NavMenu/NavMenu";
 
 const NavbarComponent: React.FC = () => {
   return (
-    <nav className="h-[60px] flex justify-between pl-2 items-center bg-lime-950 text-white ">
+    <nav className="h-[60px] flex justify-between px-2 items-center bg-lime-950 text-white gap-2 w-fit">
       <LogoApp />
       <ShearcForm />
       <NavMenu />

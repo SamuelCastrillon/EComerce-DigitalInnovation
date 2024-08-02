@@ -4,10 +4,13 @@ import OrdersCard from "./OrdersCard";
 import { AuthContext } from "@/components/Context/GlobalContext";
 import { fetchUserOrders } from "@/helpers/userOrdersHelpers";
 import { IOrderResponce } from "@/interfaces/oerder.interface";
+import OrderDetailsCard from "./OrderDetailsCard/OrderDetailsCard";
 
 const OrdersContainer = () => {
   const { currentUser } = useContext(AuthContext);
   const [userOrdersData, setUserOrdersData] = useState<IOrderResponce[]>();
+  const [showOrderModaal, setShowOrderModal] = useState(false);
+  const [orderSelect, setOrderSelect] = useState(0);
 
   useEffect(() => {
     currentUser.login && fetchUserOrders(currentUser.token, setUserOrdersData);
@@ -18,59 +21,81 @@ const OrdersContainer = () => {
   }, [userOrdersData]);
 
   return (
-    <section className="py-8 antialiase md:py-16 ">
-      <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0">
-        <div className="max-w-5xl mx-auto">
-          <div className="gap-4 p-4 rounded sm:flex sm:items-center sm:justify-between bg-lime-950">
-            <h2 className="text-xl font-semibold text-gray-300 sm:text-2xl">My orders</h2>
+    <>
+      <section className="py-8 antialiase md:py-16 ">
+        <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0">
+          <div className="max-w-5xl mx-auto">
+            <div className="gap-4 p-4 rounded sm:flex sm:items-center sm:justify-between bg-lime-950">
+              <h2 className="text-xl font-semibold text-gray-300 sm:text-2xl">My orders</h2>
 
-            <div className="gap-4 mt-6 space-y-4 sm:mt-0 sm:flex sm:items-center sm:justify-end sm:space-y-0">
-              <div>
-                <label
-                  // for="order-type"
-                  className="block mb-2 text-sm font-medium text-gray-900 sr-only ">
-                  Select order type
-                </label>
-                <select
-                  id="order-type"
-                  className="block w-full min-w-[8rem] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 ">
-                  <option selected>All orders</option>
-                  <option value="pre-order">Pre-order</option>
-                  <option value="transit">In transit</option>
-                  <option value="confirmed">Confirmed</option>
-                  <option value="cancelled">Cancelled</option>
-                </select>
-              </div>
+              <div className="gap-4 mt-6 space-y-4 sm:mt-0 sm:flex sm:items-center sm:justify-end sm:space-y-0">
+                <div>
+                  <label
+                    // for="order-type"
+                    className="block mb-2 text-sm font-medium text-gray-900 sr-only ">
+                    Select order type
+                  </label>
+                  <select
+                    id="order-type"
+                    className="block w-full min-w-[8rem] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 ">
+                    <option selected>All orders</option>
+                    <option value="pre-order">Pre-order</option>
+                    <option value="transit">In transit</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="cancelled">Cancelled</option>
+                  </select>
+                </div>
 
-              <span className="inline-block text-gray-500 "> from </span>
+                <span className="inline-block text-gray-500 "> from </span>
 
-              <div>
-                <label className="block mb-2 text-sm font-medium text-gray-900 sr-only ">
-                  Select duration
-                </label>
-                <select
-                  id="duration"
-                  className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500">
-                  <option selected>this week</option>
-                  <option value="this month">this month</option>
-                  <option value="last 3 months">the last 3 months</option>
-                  <option value="lats 6 months">the last 6 months</option>
-                  <option value="this year">this year</option>
-                </select>
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-900 sr-only ">
+                    Select duration
+                  </label>
+                  <select
+                    id="duration"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500">
+                    <option selected>this week</option>
+                    <option value="this month">this month</option>
+                    <option value="last 3 months">the last 3 months</option>
+                    <option value="lats 6 months">the last 6 months</option>
+                    <option value="this year">this year</option>
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="flex flex-col gap-5 mt-6 sm:mt-8">
-            {userOrdersData &&
-              userOrdersData.length &&
-              userOrdersData.map((order: IOrderResponce) => {
-                return <OrdersCard key={order.id} dataOrder={order} />;
-              })}
+            <div className="flex flex-col gap-5 mt-6 sm:mt-8">
+              {userOrdersData &&
+                userOrdersData.length &&
+                userOrdersData.map((order: IOrderResponce) => {
+                  return (
+                    <OrdersCard
+                      key={order.id}
+                      dataOrder={order}
+                      orderDetailsStatus={showOrderModaal}
+                      setOrderDetailsStatus={setShowOrderModal}
+                      setOrderID={setOrderSelect}
+                    />
+                  );
+                })}
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      {showOrderModaal && (
+        <section className="absolute z-10 w-screen h-screen p-10 bg-opacity-55 bg-slate-800">
+          <div className="w-full px-4 mx-auto 2xl:px-0 md:w-[80%] lg:w-[60%]">
+            {orderSelect != 0 && userOrdersData && (
+              <OrderDetailsCard
+                data={userOrdersData.find((order) => (order.id = orderSelect))}
+                setModalStatus={setShowOrderModal}
+              />
+            )}
+          </div>
+        </section>
+      )}
+    </>
   );
 };
 
