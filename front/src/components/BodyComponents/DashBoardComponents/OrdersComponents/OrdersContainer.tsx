@@ -1,14 +1,28 @@
-import Link from "next/link";
-import React from "react";
+"use client";
+import React, { useContext, useEffect, useState } from "react";
 import OrdersCard from "./OrdersCard";
+import { AuthContext } from "@/components/Context/GlobalContext";
+import { fetchUserOrders } from "@/helpers/userOrdersHelpers";
+import { IOrderResponce } from "@/interfaces/oerder.interface";
 
 const OrdersContainer = () => {
+  const { currentUser } = useContext(AuthContext);
+  const [userOrdersData, setUserOrdersData] = useState<IOrderResponce[]>();
+
+  useEffect(() => {
+    currentUser.login && fetchUserOrders(currentUser.token, setUserOrdersData);
+  }, [currentUser]);
+
+  useEffect(() => {
+    console.log(userOrdersData);
+  }, [userOrdersData]);
+
   return (
     <section className="py-8 antialiase md:py-16 ">
       <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0">
         <div className="max-w-5xl mx-auto">
-          <div className="gap-4 sm:flex sm:items-center sm:justify-between">
-            <h2 className="text-xl font-semibold text-gray-900 sm:text-2xl">My orders</h2>
+          <div className="gap-4 p-4 rounded sm:flex sm:items-center sm:justify-between bg-lime-950">
+            <h2 className="text-xl font-semibold text-gray-300 sm:text-2xl">My orders</h2>
 
             <div className="gap-4 mt-6 space-y-4 sm:mt-0 sm:flex sm:items-center sm:justify-end sm:space-y-0">
               <div>
@@ -31,7 +45,7 @@ const OrdersContainer = () => {
               <span className="inline-block text-gray-500 "> from </span>
 
               <div>
-                <label for="duration" class="sr-only mb-2 block text-sm font-medium text-gray-900 ">
+                <label className="block mb-2 text-sm font-medium text-gray-900 sr-only ">
                   Select duration
                 </label>
                 <select
@@ -47,98 +61,13 @@ const OrdersContainer = () => {
             </div>
           </div>
 
-          <div className="flow-root mt-6 sm:mt-8">
-            <OrdersCard />
+          <div className="flex flex-col gap-5 mt-6 sm:mt-8">
+            {userOrdersData &&
+              userOrdersData.length &&
+              userOrdersData.map((order: IOrderResponce) => {
+                return <OrdersCard key={order.id} dataOrder={order} />;
+              })}
           </div>
-
-          {/* <nav
-            class="mt-6 flex items-center justify-center sm:mt-8"
-            aria-label="Page navigation example">
-            <ul class="flex h-8 items-center -space-x-px text-sm">
-              <li>
-                <a
-                  href="#"
-                  class="ms-0 flex h-8 items-center justify-center rounded-s-lg border border-e-0 border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                  <span class="sr-only">Previous</span>
-                  <svg
-                    class="h-4 w-4 rtl:rotate-180"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24">
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="m15 19-7-7 7-7"
-                    />
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                  1
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                  2
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  aria-current="page"
-                  class="z-10 flex h-8 items-center justify-center border border-primary-300 bg-primary-50 px-3 leading-tight text-primary-600 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">
-                  3
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                  ...
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                  100
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex items-center justify-center h-8 px-3 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                  <span className="sr-only">Next</span>
-                  <svg
-                    class="h-4 w-4 rtl:rotate-180"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="none"
-                    viewBox="0 0 24 24">
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="m9 5 7 7-7 7"
-                    />
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </nav> */}
         </div>
       </div>
     </section>

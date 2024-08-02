@@ -1,26 +1,32 @@
+import { IOrderResponce } from "@/interfaces/oerder.interface";
 import Link from "next/link";
 import React from "react";
 
-const OrdersCard = () => {
+const OrdersCard = ({ dataOrder }: { dataOrder: IOrderResponce }) => {
+  const { id, date, products, status } = dataOrder;
+  const price = products.reduce((totalPrice, product) => {
+    return (totalPrice += product.price);
+  }, 0);
+  const dateShort = date.split("T");
   return (
     <div className="flex flex-wrap items-center justify-between gap-6 p-6 bg-white">
       <dl className="w-1/3 lg:w-auto">
         <dt className="text-base font-medium text-gray-500 ">Order ID:</dt>
         <dd className="mt-1.5 text-base font-semibold text-gray-900 ">
           <a href="#" className="hover:underline">
-            #FWB127364372
+            #{id}
           </a>
         </dd>
       </dl>
 
       <dl className="w-1/3 lg:w-auto ">
         <dt className="text-base font-medium text-gray-500">Date:</dt>
-        <dd className="mt-1.5 text-base font-semibold text-gray-900">20.12.2023</dd>
+        <dd className="mt-1.5 text-base font-semibold text-gray-900">{dateShort[0]}</dd>
       </dl>
 
       <dl className="w-1/3 lg:w-auto ">
         <dt className="text-base font-medium text-gray-500">Price:</dt>
-        <dd className="mt-1.5 text-base font-semibold text-gray-900 ">$4,756</dd>
+        <dd className="mt-1.5 text-base font-semibold text-gray-900 ">${price}</dd>
       </dl>
 
       <dl className="w-1/3 lg:w-auto ">
@@ -42,7 +48,7 @@ const OrdersCard = () => {
               d="M18.5 4h-13m13 16h-13M8 20v-3.333a2 2 0 0 1 .4-1.2L10 12.6a1 1 0 0 0 0-1.2L8.4 8.533a2 2 0 0 1-.4-1.2V4h8v3.333a2 2 0 0 1-.4 1.2L13.957 11.4a1 1 0 0 0 0 1.2l1.643 2.867a2 2 0 0 1 .4 1.2V20H8Z"
             />
           </svg>
-          Pre-order
+          {status}
         </dd>
       </dl>
 

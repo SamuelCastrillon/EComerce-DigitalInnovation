@@ -1,7 +1,10 @@
 ### Routs Users
 
 ### get
-GET http://localhost:3000/users
+GET http://localhost:3001/users/orders
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcyMjUyODY0M30.tgpj7zDiQLsFUeDdqFKEWOWfXlqHJmAoHxGFU22I_oA
+
 
 ### get
 GET http://localhost:3000/products

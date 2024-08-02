@@ -1,5 +1,4 @@
 import { IProduct } from "./products.interface";
-import { IUser } from "./user.interface";
 
 //?Create Order interface
 export interface ICreateOrderReq {
@@ -8,11 +7,10 @@ export interface ICreateOrderReq {
 }
 
 export interface IOrderResponce {
-  date: string;
   id: number;
-  products: IProduct[];
   status: string;
-  user: IUser;
+  date: string;
+  products: IProduct[];
 }
 
 export interface IUserOrders {
