@@ -28,7 +28,7 @@ const ProductsList: React.FC<IProductslist> = ({ dataRendering, filterParams }) 
 
   return (
     <section className="w-[95%] m-auto p-5 mt-5 rounded flex flex-wrap justify-center gap-5 bg-white ">
-      {ProductsToRender ? (
+      {ProductsToRender && ProductsToRender.length ? (
         ProductsToRender.map((e: IProductCard) => {
           return <ProductCard key={e.id} id={e.id} name={e.name} price={e.price} image={e.image} />;
         })
