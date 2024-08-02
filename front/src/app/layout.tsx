@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <GlobalContext>
-        <body className="flex flex-col items-center justify-between w-full min-h-screen font-sans text-gray-600 bg-gray-200 max-h-fit">
+        <body className="flex flex-col items-center min-w-[375px] w-full h-auto font-sans text-gray-600 bg-gray-200 ">
           <HeaderComponent />
           <main className="flex flex-col items-center">{children}</main>
           <FooterRendering>

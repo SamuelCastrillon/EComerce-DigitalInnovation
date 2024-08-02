@@ -3,7 +3,7 @@ import { IFooterUl } from "./IFooterUl";
 
 const FooterUl: React.FC<IFooterUl> = ({ title, ulElements }) => {
   return (
-    <div className="font-sans">
+    <div className="w-full font-sans">
       <h4 className="font-bold">{title}</h4>
       <ul>
         {ulElements.map((element: string, i: number) => {
