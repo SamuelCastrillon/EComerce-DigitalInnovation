@@ -4,12 +4,18 @@ import { DataToBack } from "@/helpers/classDataProducts";
 import { IProduct } from "@/interfaces/products.interface";
 import React from "react";
 
-const ShopView = async () => {
+interface IFiltersParams {
+  params: { filters: string[] };
+}
+
+const ShopView: React.FC<IFiltersParams> = async ({ params }) => {
   const dataResponse: IProduct[] = await DataToBack.getAllProducts();
   return (
     <>
       <MenuProductsController />
-      {dataResponse.length > 0 && <ProductsList dataRendering={dataResponse} />}
+      {dataResponse.length > 0 && (
+        <ProductsList dataRendering={dataResponse} filterParams={params} />
+      )}
     </>
   );
 };
