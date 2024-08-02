@@ -1,12 +1,12 @@
 import React from "react";
 import NavbarComponent from "./Navbar/NavBarComponent";
-import MenuComponent from "./Menu/MenuComponent";
+import MenuCategories from "./CategoriesMenu/MenuCategories";
 
 const HeaderComponent = () => {
   return (
-    <header className="w-fit">
+    <header className="w-full">
       <NavbarComponent />
-      <MenuComponent />
+      <MenuCategories />
     </header>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import CategorieCard from "./CategorieCard/CategorieCard";
-import { categoriesList } from "./categoriesList";
+import { categoriesList } from "@/helpers/categoriesList";
 
 const CategoriesContainer = () => {
   return (
