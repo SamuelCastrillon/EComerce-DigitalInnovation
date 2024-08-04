@@ -101,7 +101,7 @@ const NavMenu = () => {
         <article
           className={`${
             showCart ? "flex" : "hidden"
-          } flex-col gap-1 p-5 absolute top-[55px] right-0 bg-lime-800 z-20 rounded sm:mr-10`}>
+          } flex-col gap-1 p-5 absolute top-[65px] right-0 bg-lime-950 z-20 rounded w-screen sm:w-1/2 sm:mr-1 md:mr-10`}>
           <MenuDropDowCart
             currentUserId={currentUser.user.id}
             cartGeneralStatus={cartGeneralStatus}
@@ -116,7 +116,7 @@ const NavMenu = () => {
       <menu
         className={`${
           showMenu ? "flex" : "hidden"
-        } flex-col gap-1 p-5 absolute top-[55px] right-0 bg-lime-800 z-20 rounded`}>
+        } flex-col gap-1 p-5 absolute top-[65px] right-0 bg-lime-950 z-20 rounded w-screen md:w-1/3 sm:w-1/2 sm:mr-1`}>
         {currentUser.login ? NavbarButtonsUserSignIn() : NavbarButtonsPublic()}
 
         {currentUser.login && (

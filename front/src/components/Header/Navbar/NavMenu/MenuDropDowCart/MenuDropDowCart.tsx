@@ -12,12 +12,16 @@ interface IGeneralDataCart {
   totalPrice: number;
 }
 
-const MenuDropDowCart = ({
+interface IMenuDropDowCart {
+  currentUserId: number;
+  cartGeneralStatus: IGeneralDataCart;
+  setCartGeneralStatus: Function;
+}
+
+const MenuDropDowCart: React.FC<IMenuDropDowCart> = ({
   currentUserId,
   cartGeneralStatus,
   setCartGeneralStatus,
-}: {
-  cartGeneralStatus: IGeneralDataCart;
 }) => {
   const { currentCart, setCurrentCart } = useContext(CartContext);
   const { allProducts, setAllProducts } = useContext<IProduct[]>(ProductsContext);
@@ -99,7 +103,7 @@ const MenuDropDowCart = ({
           </div>
           <NavigateButton
             href="/dashboard/cart"
-            className="w-full py-2 rounded-sm h-fit bg-lime-500 text-lime-950">
+            className="w-full py-2 font-bold rounded-sm h-fit bg-lime-500 text-lime-950">
             See your cart
           </NavigateButton>
         </>
@@ -108,7 +112,7 @@ const MenuDropDowCart = ({
           <strong className=""> Add your products to cart</strong>
           <NavigateButton
             href="/shop/products/all"
-            className="w-full py-2 rounded-sm h-fit bg-lime-500 text-lime-950">
+            className="w-full py-2 font-bold rounded-sm h-fit bg-lime-500 text-lime-950">
             See your cart
           </NavigateButton>
         </>

@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.5",
     "client-only": "^0.0.1",
     "formik": "^2.4.6",
