@@ -4,7 +4,7 @@ import { categoriesList } from "@/helpers/categoriesList";
 
 const CategoriesContainer = () => {
   return (
-    <section className="w-[95%] h-fit m-auto rounded flex flex-wrap justify-center items-center gap-5">
+    <section className="w-[95%] h-fit m-auto rounded flex flex-wrap justify-center items-center gap-5 z-10">
       {categoriesList.map((card) => {
         return (
           <CategorieCard key={card.id} name={card.name}>
