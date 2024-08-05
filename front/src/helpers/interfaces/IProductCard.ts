@@ -5,7 +5,7 @@ export interface ICurrentCart {
 
 export interface IProductCard {
   id: number;
-  name: String;
-  price: Number;
-  image: String;
+  name: string;
+  price: number;
+  image: string;
 }
