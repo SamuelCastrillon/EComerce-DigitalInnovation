@@ -11,8 +11,8 @@ const ProductDetailsCard: React.FC<IData> = ({ data }) => {
   return (
     <section className="flex justify-center w-full mt-20 mb-20">
       <div className="flex w-5/6 h-[400px] mt-20 mb-20 p-5 bg-white rounded">
-        <div className="flex items-center w-1/2">
-          <img src={image} className="w-auto h-auto m-auto" />
+        <div className="flex items-center w-1/2 h-full">
+          <img src={image} className="w-auto h-auto max-w-full max-h-full m-auto" />
         </div>
         <div className="flex flex-col justify-center w-1/2">
           <div className="flex flex-col">
