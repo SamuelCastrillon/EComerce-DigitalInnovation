@@ -77,7 +77,7 @@ const MenuDropDowCart: React.FC<IMenuDropDowCart> = ({
             <span className="text-gray-400">{productsToCart.length} Intems</span>
           </div>
           <hr className=" border-lime-400" />
-          <div className="flex flex-col gap-4 p-2">
+          <div className="flex flex-col w-full gap-4 p-2">
             {productsToCart.length > 0 &&
               productsToCart.map((product: IProduct, i: number) => {
                 return (

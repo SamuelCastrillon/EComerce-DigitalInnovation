@@ -14,17 +14,27 @@ const MenuSmallProductCard: React.FC<IMenuSmallProductCart> = ({ product, userId
     onClick(userId, product.id);
   }
   return (
-    <div className="flex justify-between">
-      <div className="flex items-center gap-2">
-        <img src={product.image} alt={product.name} className="h-[30px] w-auto" />
-        <strong className=" hover:border-b-2">
-          <Link href={`/shop/product/${product.id}`}>{product.name}</Link>
-        </strong>
+    <div className="flex justify-between w-full pr-2 bg-gray-300 rounded">
+      <div className="flex items-center gap-2 h-fit">
+        <div className="h-[60px] w-[60px] p-[4px] items-center flex justify-center bg-white rounded">
+          <img
+            src={product.image}
+            alt={product.name}
+            className="w-auto h-auto max-w-full max-h-full"
+          />
+        </div>
+        <div className="h-fit w-fit">
+          <Link href={`/shop/product/${product.id}`}>
+            <strong className="text-lime-950 hover:border-b-2 border-lime-950 h-[25px]">
+              {product.name}
+            </strong>
+          </Link>
+        </div>
       </div>
-      <div className="flex items-center gap-1">
-        <span>${product.price}</span>
+      <div className="flex items-center gap-1 ">
+        <span className="text-lg font-bold text-lime-950">${product.price}</span>
         <button onClick={handeler}>
-          <TrashIcon className="h-[15px] text-red-600" />
+          <TrashIcon className="h-[20px] text-red-600" />
         </button>
       </div>
     </div>
