@@ -1,8 +1,9 @@
 "use client";
-import { ReactNode, createContext, useContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 import { IUserLoginRes } from "../interfaces/user.interface";
 import { IProduct } from "../interfaces/products.interface";
 import { DataToBack } from "../classDataProducts";
+import { ICurrentCart } from "../interfaces/IProductCard";
 
 interface IAuthcontext {
   currentUser: IUserLoginRes | null;
@@ -23,31 +24,57 @@ export const ProductsContext = createContext<IProductsContext>({
   setAllProducts: () => {},
 });
 
-export const CartContext = createContext({});
+export interface ICartContext {
+  currentCart: ICurrentCart;
+  setCurrentCart: (currentCart: ICurrentCart) => void;
+}
+
+const CartInitialState: ICurrentCart = {
+  products: [],
+  userId: 0,
+};
+
+export const CartContext = createContext<ICartContext>({
+  currentCart: CartInitialState,
+  setCurrentCart: () => {},
+});
 
 export const GlobalContext = ({ children }: { children: ReactNode }) => {
   const [currentUser, setCurrentUser] = useState<IUserLoginRes | null>(null);
   const [allProducts, setAllProducts] = useState<IProduct[] | []>([]);
-  const [currentCart, setCurrentCart] = useState({});
+  const [currentCart, setCurrentCart] = useState<ICurrentCart>(CartInitialState);
 
-  async function getProduts() {
-    // !currentCart.userId &&
-    //   setCurrentCart(localData.getStorage(localData.userProductOrder + currentUserId));
+  async function getProducts() {
     setAllProducts(await DataToBack.getAllProducts());
+  }
+
+  function checkCartProducts() {
+    if (currentUser) {
+      const currentUserId = currentUser.user.id;
+      const cartLocalDataString = localStorage.getItem(`productOrderUserID:${currentUserId}`);
+      if (cartLocalDataString) {
+        const cartLocalDataParse: ICurrentCart = JSON.parse(cartLocalDataString);
+        setCurrentCart(cartLocalDataParse);
+      }
+    }
   }
 
   useEffect(() => {
     if (!currentUser) {
       const dataUser = localStorage.getItem("dataUserID:");
       if (dataUser) {
-        const userParser: IUserLoginRes = JSON.parse(dataUser);
-        setCurrentUser(userParser);
+        const userParse: IUserLoginRes = JSON.parse(dataUser);
+        setCurrentUser(userParse);
       }
     }
     if (allProducts.length === 0) {
-      getProduts();
+      getProducts();
     }
   }, []);
+
+  useEffect(() => {
+    checkCartProducts();
+  }, [currentUser]);
 
   return (
     <AuthContext.Provider value={{ currentUser, setCurrentUser }}>

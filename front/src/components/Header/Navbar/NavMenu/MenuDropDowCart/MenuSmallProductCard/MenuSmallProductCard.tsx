@@ -3,9 +3,15 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import React from "react";
 
-const MenuSmallProductCard = ({ product, onClick }: { product: IProduct; onClick: Function }) => {
+interface IMenuSmallProductCart {
+  product: IProduct;
+  userId: number;
+  onClick: (userId: number, id: number) => void;
+}
+
+const MenuSmallProductCard: React.FC<IMenuSmallProductCart> = ({ product, userId, onClick }) => {
   function handeler() {
-    onClick(product.id);
+    onClick(userId, product.id);
   }
   return (
     <div className="flex justify-between">

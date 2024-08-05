@@ -1,11 +1,11 @@
 "use client";
-import { CartContext, ProductsContext } from "@/helpers/Context/GlobalContext";
+import { CartContext, ICartContext, ProductsContext } from "@/helpers/Context/GlobalContext";
 import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
-import { DataToBack } from "@/helpers/classDataProducts";
 import { localData } from "@/helpers/classManagementLocalSotorage";
 import { IProduct } from "@/helpers/interfaces/products.interface";
 import React, { useContext, useEffect, useState } from "react";
 import MenuSmallProductCard from "./MenuSmallProductCard/MenuSmallProductCard";
+import { ICreateOrderReq } from "@/helpers/interfaces/oerder.interface";
 
 interface IGeneralDataCart {
   itemsLength: number;
@@ -23,15 +23,9 @@ const MenuDropDowCart: React.FC<IMenuDropDowCart> = ({
   cartGeneralStatus,
   setCartGeneralStatus,
 }) => {
-  const { currentCart, setCurrentCart } = useContext(CartContext);
   const { allProducts, setAllProducts } = useContext(ProductsContext);
+  const { currentCart, setCurrentCart } = useContext(CartContext);
   const [productsToCart, setProductsToCart] = useState<IProduct[]>([]);
-
-  async function checkCartProducts() {
-    !currentCart.userId &&
-      setCurrentCart(localData.getStorage(localData.userProductOrder + currentUserId));
-    // setAllProducts(await DataToBack.getAllProducts());
-  }
 
   function udateStatusCart(idArray: number[], productsAarray: IProduct[]) {
     const products: IProduct[] | undefined = [];
@@ -48,16 +42,15 @@ const MenuDropDowCart: React.FC<IMenuDropDowCart> = ({
         dataCart.totalPrice += product.price;
       }
     });
-    // console.log("ProductsCart: ", products);
     dataCart.itemsLength = products.length;
     setProductsToCart(products);
     setCartGeneralStatus(dataCart);
   }
 
   //? function delet product to cart
-  function handelerDelet(id: number) {
-    const currentUserId = currentCart.userId;
-    const newUserOrder = {
+  function handelerDelet(userId: number, id: number) {
+    const currentUserId = userId;
+    const newUserOrder: ICreateOrderReq = {
       userId: currentUserId,
       products: [],
     };
@@ -68,10 +61,6 @@ const MenuDropDowCart: React.FC<IMenuDropDowCart> = ({
     localData.saveStorage(localData.userProductOrder, currentUserId, newUserOrder);
     setCurrentCart(newUserOrder);
   }
-
-  useEffect(() => {
-    checkCartProducts();
-  }, []);
 
   useEffect(() => {
     if (currentCart.userId && allProducts.length > 0) {
@@ -91,7 +80,14 @@ const MenuDropDowCart: React.FC<IMenuDropDowCart> = ({
           <div className="flex flex-col gap-4 p-2">
             {productsToCart.length > 0 &&
               productsToCart.map((product: IProduct, i: number) => {
-                return <MenuSmallProductCard key={i} product={product} onClick={handelerDelet} />;
+                return (
+                  <MenuSmallProductCard
+                    key={i}
+                    product={product}
+                    userId={currentUserId}
+                    onClick={handelerDelet}
+                  />
+                );
               })}
           </div>
           <hr className=" border-lime-400" />
