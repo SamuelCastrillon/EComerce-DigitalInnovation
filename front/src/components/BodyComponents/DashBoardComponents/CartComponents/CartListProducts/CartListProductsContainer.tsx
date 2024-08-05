@@ -1,8 +1,8 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import CartProductCard from "../CartProductCard";
-import { AuthContext, CartContext, ProductsContext } from "@/components/Context/GlobalContext";
-import { IProduct } from "@/interfaces/products.interface";
+import { AuthContext, CartContext, ProductsContext } from "@/helpers/Context/GlobalContext";
+import { IProduct } from "@/helpers/interfaces/products.interface";
 import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
 import { localData } from "@/helpers/classManagementLocalSotorage";
 import { DataToBack } from "@/helpers/classDataProducts";

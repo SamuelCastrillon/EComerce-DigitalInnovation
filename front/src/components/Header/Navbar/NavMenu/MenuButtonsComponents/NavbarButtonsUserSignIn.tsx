@@ -6,7 +6,7 @@ import { ShoppingBagIcon, UserCircleIcon } from "@heroicons/react/24/outline";
 const NavDataUserSignOut: IDataButtons[] = [
   {
     name: "My Accout",
-    url: "/dashboard",
+    url: "/dashboard/account",
     icone: <UserCircleIcon className="w-[25px] h-auto text-white mr-1" />,
   },
   {

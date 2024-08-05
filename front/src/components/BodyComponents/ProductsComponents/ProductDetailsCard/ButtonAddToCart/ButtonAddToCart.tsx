@@ -1,7 +1,7 @@
 "use client";
-import { AuthContext, CartContext } from "@/components/Context/GlobalContext";
+import { AuthContext, CartContext } from "@/helpers/Context/GlobalContext";
 import { localData } from "@/helpers/classManagementLocalSotorage";
-import { ICreateOrderReq } from "@/interfaces/oerder.interface";
+import { ICreateOrderReq } from "@/helpers/interfaces/oerder.interface";
 import Link from "next/link";
 import React, { useContext } from "react";
 

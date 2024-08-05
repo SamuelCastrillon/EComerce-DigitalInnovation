@@ -1,4 +1,4 @@
-import { IProduct } from "@/interfaces/products.interface";
+import { IProduct } from "@/helpers/interfaces/products.interface";
 import React from "react";
 import ButtonAddToCart from "./ButtonAddToCart/ButtonAddToCart";
 

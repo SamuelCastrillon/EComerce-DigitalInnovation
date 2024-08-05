@@ -1,4 +1,4 @@
-import { ICreateOrderReq } from "@/interfaces/oerder.interface";
+import { ICreateOrderReq } from "@/helpers/interfaces/oerder.interface";
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export async function createOrder(params: ICreateOrderReq, userToken: string) {

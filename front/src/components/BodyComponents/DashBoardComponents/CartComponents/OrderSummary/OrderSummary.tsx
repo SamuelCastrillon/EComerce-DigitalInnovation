@@ -1,9 +1,9 @@
 "use client";
-import { AuthContext, CartContext, ProductsContext } from "@/components/Context/GlobalContext";
+import { AuthContext, CartContext, ProductsContext } from "@/helpers/Context/GlobalContext";
 import { DataToBack } from "@/helpers/classDataProducts";
 import { localData } from "@/helpers/classManagementLocalSotorage";
 import { dataToOrderSumary } from "@/helpers/productsCartHelpers";
-import { IProduct } from "@/interfaces/products.interface";
+import { IProduct } from "@/helpers/interfaces/products.interface";
 import React, { useContext, useEffect, useState } from "react";
 
 const OrderSummary = () => {

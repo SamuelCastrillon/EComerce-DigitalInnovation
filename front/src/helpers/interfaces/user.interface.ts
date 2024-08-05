@@ -1,3 +1,5 @@
+import { IOrderResponce } from "./oerder.interface";
+
 //?User login interfaces
 export interface IUserLoginReq {
   email: string;
@@ -5,7 +7,7 @@ export interface IUserLoginReq {
 }
 export interface IUserLoginRes {
   login: boolean;
-  user: object;
+  user: IUser;
   token: string;
 }
 
@@ -22,4 +24,5 @@ export interface IUserRegisterReq {
 export interface IUser extends IUserRegisterReq {
   id: number;
   role: string;
+  orders: IOrderResponce[];
 }

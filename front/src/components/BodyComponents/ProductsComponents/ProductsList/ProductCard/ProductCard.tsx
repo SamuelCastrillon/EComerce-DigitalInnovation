@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { IProductCard } from "@/interfaces/IProductCard";
+import { IProductCard } from "@/helpers/interfaces/IProductCard";
 
 export const ProductCard: React.FC<IProductCard> = ({ id, name, price, image }) => {
   return (

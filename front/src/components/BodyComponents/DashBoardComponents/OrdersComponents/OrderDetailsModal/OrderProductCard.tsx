@@ -1,4 +1,4 @@
-import { IProduct } from "@/interfaces/products.interface";
+import { IProduct } from "@/helpers/interfaces/products.interface";
 import Link from "next/link";
 import React from "react";
 

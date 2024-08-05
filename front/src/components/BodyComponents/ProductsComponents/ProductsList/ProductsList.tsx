@@ -1,7 +1,7 @@
 import React from "react";
 import { ProductCard } from "./ProductCard/ProductCard";
-import { IProductCard } from "../../../../interfaces/IProductCard";
-import { IProduct } from "@/interfaces/products.interface";
+import { IProductCard } from "../../../../helpers/interfaces/IProductCard";
+import { IProduct } from "@/helpers/interfaces/products.interface";
 import { filterProductsByCategory } from "@/helpers/filterProductsHelpers";
 
 interface IProductslist {
@@ -15,7 +15,7 @@ const ProductsList: React.FC<IProductslist> = ({ dataRendering, filterParams }) 
   const Products: IProduct[] = dataRendering;
   const Filter: string[] = filterParams.filters;
   const ProductsToRender = filterProductsByCategory(Products, Filter[0]);
-  console.log(filterParams);
+
   if (Filter[0] === "all") {
     return (
       <section className="w-[95%] m-auto p-5 mt-5 rounded flex flex-wrap justify-center gap-5 bg-white ">

@@ -11,7 +11,7 @@ import {
 import { IUserSignIn, postSubmitSignIn } from "./SignInHandeler";
 import { localData } from "@/helpers/classManagementLocalSotorage";
 import { useRouter } from "next/navigation";
-import { AuthContext } from "@/components/Context/GlobalContext";
+import { AuthContext } from "@/helpers/Context/GlobalContext";
 import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
 
 const SingInView = () => {

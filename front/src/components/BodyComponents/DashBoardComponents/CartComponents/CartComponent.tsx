@@ -1,12 +1,12 @@
 "use client";
-import { AuthContext, CartContext, ProductsContext } from "@/components/Context/GlobalContext";
+import { AuthContext, CartContext, ProductsContext } from "@/helpers/Context/GlobalContext";
 import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
 import { DataToBack } from "@/helpers/classDataProducts";
 import { localData } from "@/helpers/classManagementLocalSotorage";
-import { IProduct } from "@/interfaces/products.interface";
+import { IProduct } from "@/helpers/interfaces/products.interface";
 import React, { useContext, useEffect, useState } from "react";
 import CartProductCard from "./CartProductCard";
-import { ICreateOrderReq } from "@/interfaces/oerder.interface";
+import { ICreateOrderReq } from "@/helpers/interfaces/oerder.interface";
 import { createOrder } from "./CreateOrderHandeler";
 
 const CartComponent: React.FC = () => {

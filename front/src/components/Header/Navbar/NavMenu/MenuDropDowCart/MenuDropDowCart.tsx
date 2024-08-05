@@ -1,9 +1,9 @@
 "use client";
-import { CartContext, ProductsContext } from "@/components/Context/GlobalContext";
+import { CartContext, ProductsContext } from "@/helpers/Context/GlobalContext";
 import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
 import { DataToBack } from "@/helpers/classDataProducts";
 import { localData } from "@/helpers/classManagementLocalSotorage";
-import { IProduct } from "@/interfaces/products.interface";
+import { IProduct } from "@/helpers/interfaces/products.interface";
 import React, { useContext, useEffect, useState } from "react";
 import MenuSmallProductCard from "./MenuSmallProductCard/MenuSmallProductCard";
 
@@ -24,13 +24,13 @@ const MenuDropDowCart: React.FC<IMenuDropDowCart> = ({
   setCartGeneralStatus,
 }) => {
   const { currentCart, setCurrentCart } = useContext(CartContext);
-  const { allProducts, setAllProducts } = useContext<IProduct[]>(ProductsContext);
+  const { allProducts, setAllProducts } = useContext(ProductsContext);
   const [productsToCart, setProductsToCart] = useState<IProduct[]>([]);
 
   async function checkCartProducts() {
     !currentCart.userId &&
       setCurrentCart(localData.getStorage(localData.userProductOrder + currentUserId));
-    setAllProducts(await DataToBack.getAllProducts());
+    // setAllProducts(await DataToBack.getAllProducts());
   }
 
   function udateStatusCart(idArray: number[], productsAarray: IProduct[]) {

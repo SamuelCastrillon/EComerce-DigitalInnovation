@@ -1,4 +1,4 @@
-import { IUserLoginRes } from "@/interfaces/user.interface";
+import { IUserLoginRes } from "@/helpers/interfaces/user.interface";
 
 class ManagmentLocalStorage {
   userData: string;

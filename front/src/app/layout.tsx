@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Footer from "@/components/Footer/Footer";
+
 import HeaderComponent from "@/components/Header/HeaderComponent";
 import FooterRendering from "@/components/Footer/FooterRendering/FooterRendering";
-import GlobalContext from "@/components/Context/GlobalContext";
+import Footer from "@/components/Footer/Footer";
+import { GlobalContext } from "@/helpers/Context/GlobalContext";
 
 export const metadata: Metadata = {
   title: "Digital innovation",
@@ -20,7 +21,7 @@ export default function RootLayout({
       <GlobalContext>
         <body className="flex flex-col items-center min-w-[375px] w-full h-auto font-sans text-gray-600 bg-gray-200 ">
           <HeaderComponent />
-          <main className="relative flex flex-col items-center ">{children}</main>
+          <main className="relative flex flex-col items-center w-screen h-auto">{children}</main>
           <FooterRendering>
             <Footer />
           </FooterRendering>

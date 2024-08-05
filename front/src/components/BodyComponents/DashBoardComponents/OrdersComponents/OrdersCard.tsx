@@ -1,4 +1,4 @@
-import { IOrderResponce } from "@/interfaces/oerder.interface";
+import { IOrderResponce } from "@/helpers/interfaces/oerder.interface";
 import Link from "next/link";
 import React from "react";
 

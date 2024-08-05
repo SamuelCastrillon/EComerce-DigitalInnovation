@@ -1,4 +1,4 @@
-import { IProduct } from "@/interfaces/products.interface";
+import { IProduct } from "@/helpers/interfaces/products.interface";
 
 export function shearchProductsCartById(
   productsCart: [number],

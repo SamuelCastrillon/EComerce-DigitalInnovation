@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "@/components/Context/GlobalContext";
+import { AuthContext } from "@/helpers/Context/GlobalContext";
 import ActionButton from "@/components/PublicComponents/Buttons/ActionButton/ActionButton";
 import { localData } from "@/helpers/classManagementLocalSotorage";
 import NavbarButtonsPublic from "./MenuButtonsComponents/NavbarButtonsPublic";
@@ -23,13 +23,6 @@ const NavMenu = () => {
   const [showMenu, shetShowMenu] = useState(false);
 
   useEffect(() => {
-    const dataUser: object | undefined = localData.getStorage(localData.userData);
-    if (dataUser) {
-      setCurrentUser(dataUser);
-    }
-  }, []);
-
-  useEffect(() => {
     shetShowMenu(false);
     shetShowCart(false);
   }, [pathname]);
@@ -43,7 +36,7 @@ const NavMenu = () => {
     shetShowCart(false);
   }
   const logicSignOut = () => {
-    setCurrentUser({});
+    setCurrentUser(null);
     localData.deletStorage(localData.userData);
     router.push("/home");
     console.log("SignOut");
@@ -55,7 +48,7 @@ const NavMenu = () => {
       //? Conditional rendering Button cart toggle show
        */}
       {pathname != "/dashboard/cart" &&
-        (currentUser.login ? (
+        (currentUser?.login ? (
           <ActionButton
             className={`flex p-2 rounded hover:bg-lime-900 font-bold items-center gap-1 relative ${
               showCart ? "bg-lime-900" : ""
@@ -97,7 +90,7 @@ const NavMenu = () => {
       {/* 
       //? DropDaw Cart
        */}
-      {currentUser.login && (
+      {currentUser?.login && (
         <article
           className={`${
             showCart ? "flex" : "hidden"
@@ -117,9 +110,9 @@ const NavMenu = () => {
         className={`${
           showMenu ? "flex" : "hidden"
         } flex-col gap-1 p-5 absolute top-[65px] right-0 bg-lime-950 z-20 rounded w-screen md:w-1/3 sm:w-1/2 sm:mr-1`}>
-        {currentUser.login ? NavbarButtonsUserSignIn() : NavbarButtonsPublic()}
+        {currentUser?.login ? NavbarButtonsUserSignIn() : NavbarButtonsPublic()}
 
-        {currentUser.login && (
+        {currentUser?.login && (
           <ActionButton
             className="flex items-center gap-1 p-2 font-bold rounded hover:bg-lime-900"
             onClick={logicSignOut}>

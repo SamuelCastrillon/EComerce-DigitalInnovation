@@ -1,4 +1,4 @@
-import { IProduct } from "@/interfaces/products.interface";
+import { IProduct } from "@/helpers/interfaces/products.interface";
 import { categoriesList } from "./categoriesList";
 
 export function filterProductsByCategory(products: IProduct[], categorieParam: string) {

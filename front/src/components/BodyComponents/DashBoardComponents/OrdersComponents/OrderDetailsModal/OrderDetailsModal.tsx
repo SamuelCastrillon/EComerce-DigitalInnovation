@@ -1,5 +1,5 @@
-import { IOrderResponce } from "@/interfaces/oerder.interface";
-import { IProduct } from "@/interfaces/products.interface";
+import { IOrderResponce } from "@/helpers/interfaces/oerder.interface";
+import { IProduct } from "@/helpers/interfaces/products.interface";
 import Link from "next/link";
 import React from "react";
 import OrderProductCard from "./OrderProductCard";

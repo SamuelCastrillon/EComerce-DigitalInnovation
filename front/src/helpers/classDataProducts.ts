@@ -1,4 +1,4 @@
-import { IProduct } from "@/interfaces/products.interface";
+import { IProduct } from "@/helpers/interfaces/products.interface";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 

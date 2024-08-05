@@ -1,9 +1,9 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import OrdersCard from "./OrdersCard";
-import { AuthContext } from "@/components/Context/GlobalContext";
+import { AuthContext } from "@/helpers/Context/GlobalContext";
 import { fetchUserOrders } from "@/helpers/userOrdersHelpers";
-import { IOrderResponce } from "@/interfaces/oerder.interface";
+import { IOrderResponce } from "@/helpers/interfaces/oerder.interface";
 import OrderDetailsModal from "./OrderDetailsModal/OrderDetailsModal";
 
 const OrdersContainer = () => {

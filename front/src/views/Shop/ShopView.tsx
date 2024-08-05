@@ -1,7 +1,7 @@
 import MenuProductsController from "@/components/BodyComponents/ProductsComponents/MenuProductsController/MenuProductsController";
 import ProductsList from "@/components/BodyComponents/ProductsComponents/ProductsList/ProductsList";
 import { DataToBack } from "@/helpers/classDataProducts";
-import { IProduct } from "@/interfaces/products.interface";
+import { IProduct } from "@/helpers/interfaces/products.interface";
 import React from "react";
 
 interface IFiltersParams {
