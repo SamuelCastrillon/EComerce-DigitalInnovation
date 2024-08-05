@@ -6,12 +6,18 @@ interface IAccountTitle {
   userType: string;
 }
 
-const AccountTitle = () => {
+const AccountTitle: React.FC<IAccountTitle> = ({ userImage, userName, userType }) => {
   return (
-    <div className="w-full h-[150px] bg-lime-950 flex gap-5">
-      <div className="w-10 h-10 bg-lime-300">Img</div>
-      <strong>User Name</strong>
-    </div>
+    <>
+      <div className="w-[100px] h-[100px] bg-lime-300 rounded-[50%] text-center">Img</div>
+      <h2 className="text-2xl font-bold text-lime-950">{userName}</h2>
+      <div className="absolute flex gap-1 font-bold text-white top-2 right-2 w-fit">
+        <label className="text-lime-950">Role:</label>
+        <span className="px-1 text-center text-gray-300 align-middle rounded-md bg-lime-950">
+          {userType}
+        </span>
+      </div>
+    </>
   );
 };
 
