@@ -9,7 +9,7 @@ const ImputForm: React.FC<IDataConstructorInput> = ({
   FieldPH,
 }) => {
   return (
-    <div className="flex flex-col h-[80px] w-[240px] gap-1">
+    <div className="flex flex-col h-[100px] w-[240px] gap-1">
       <label className="text-lg font-bold text-lime-800">{LabelText}</label>
       <Field
         type={FieldType}

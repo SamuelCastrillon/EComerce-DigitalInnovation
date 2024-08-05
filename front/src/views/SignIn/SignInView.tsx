@@ -12,6 +12,7 @@ import { IUserSignIn, postSubmitSignIn } from "./SignInHandeler";
 import { localData } from "@/helpers/classManagementLocalSotorage";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/components/Context/GlobalContext";
+import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
 
 const SingInView = () => {
   const router = useRouter();
@@ -19,6 +20,7 @@ const SingInView = () => {
 
   async function handelerSubmit(data: IUserSignIn) {
     const response = await postSubmitSignIn(data);
+
     if (response.login) {
       localData.saveStorage(localData.userData, "", response);
       setCurrentUser(response);
@@ -27,7 +29,7 @@ const SingInView = () => {
   }
 
   return (
-    <section>
+    <section className="flex flex-col items-center">
       <FormComponent
         iniValues={SignInInitialValues}
         valiSchema={SingInSchema}
@@ -36,6 +38,14 @@ const SingInView = () => {
         butonsForm={ButonsSignInForm}
         dataContructor={InputsFormValues}
       />
+      <div className="flex items-center gap-5">
+        <strong>Need an account?</strong>
+        <NavigateButton
+          href="/createAccount"
+          className="rounded-md bg-lime-950 w-full h-fit py-[5px] px-[10px] text-sm/6 font-semibold text-white hover:bg-lime-800">
+          Create a new account
+        </NavigateButton>
+      </div>
     </section>
   );
 };
