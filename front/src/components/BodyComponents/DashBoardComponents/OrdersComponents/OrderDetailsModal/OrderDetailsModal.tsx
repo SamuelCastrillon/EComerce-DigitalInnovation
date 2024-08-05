@@ -5,11 +5,15 @@ import React from "react";
 import OrderProductCard from "./OrderProductCard";
 
 interface IOrder {
-  data: IOrderResponce;
+  data: IOrderResponce | undefined;
   setModalStatus: Function;
 }
 
 const OrderDetailsModal: React.FC<IOrder> = ({ data, setModalStatus }) => {
+  if (data === undefined) {
+    return;
+  }
+
   const { id, date, products, status } = data;
 
   function handelerClose() {
@@ -40,7 +44,7 @@ const OrderDetailsModal: React.FC<IOrder> = ({ data, setModalStatus }) => {
           <dd className="font-medium text-gray-900 sm:text-end">{status}</dd>
         </dl>
       </div>
-      <hr className="my-2 border-lime-950" />
+      <hr className="my-2 border-white" />
       <div className="flex flex-col items-center justify-center gap-2 p-4 bg-white rounded-lg">
         {products.map((product: IProduct) => {
           return <OrderProductCard key={product.id} data={product} />;

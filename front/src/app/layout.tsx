@@ -20,7 +20,7 @@ export default function RootLayout({
       <GlobalContext>
         <body className="flex flex-col items-center min-w-[375px] w-full h-auto font-sans text-gray-600 bg-gray-200 ">
           <HeaderComponent />
-          <main className="flex flex-col items-center">{children}</main>
+          <main className="relative flex flex-col items-center ">{children}</main>
           <FooterRendering>
             <Footer />
           </FooterRendering>

@@ -65,7 +65,7 @@ const OrdersContainer = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-5 mt-6 sm:mt-8">
+            <div className="flex flex-col max-h-[72vh] gap-5 mt-6 overflow-y-auto sm:mt-8">
               {userOrdersData &&
                 userOrdersData.length &&
                 userOrdersData.map((order: IOrderResponce) => {
@@ -84,7 +84,7 @@ const OrdersContainer = () => {
         </div>
       </section>
       {showOrderModaal && (
-        <section className="absolute z-10 w-screen h-screen p-10 bg-opacity-55 bg-slate-800">
+        <section className="absolute z-10 w-screen h-full p-10 bg-opacity-55 bg-slate-800">
           <div className="w-full px-4 mx-auto 2xl:px-0 md:w-[80%] lg:w-[60%]">
             {orderSelect != 0 && userOrdersData && (
               <OrderDetailsModal
