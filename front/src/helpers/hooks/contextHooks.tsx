@@ -1,17 +1,14 @@
 "use client";
 import React, { useContext } from "react";
-import { AuthContext } from "../Context/GlobalContext";
-import { IUser } from "../interfaces/user.interface";
+import { AuthContext, IAuthcontext } from "../Context/GlobalContext";
+import { IUserLoginRes } from "../interfaces/user.interface";
 
-interface IContextUser {
-  currentUser: {} | IUser;
-  setCurrentUser: (dataCurrentUser: IUser) => {};
-}
-
-const useCurrentUser = (): IContextUser => {
-  const currentUser = useContext(AuthContext);
-
-  return currentUser;
+const useCurrentUser = (data: IUserLoginRes) => {
+  const { currentUser, setCurrentUser } = useContext<IAuthcontext>(AuthContext);
+  if (data) {
+    setCurrentUser(data);
+  }
+  return { currentUser, setCurrentUser };
 };
 
 export default useCurrentUser;

@@ -5,7 +5,7 @@ import { IProduct } from "../interfaces/products.interface";
 import { DataToBack } from "../classDataProducts";
 import { ICurrentCart } from "../interfaces/IProductCard";
 
-interface IAuthcontext {
+export interface IAuthcontext {
   currentUser: IUserLoginRes | null;
   setCurrentUser: (currenUser: IUserLoginRes | null) => void;
 }
