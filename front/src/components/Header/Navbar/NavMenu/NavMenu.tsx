@@ -10,11 +10,13 @@ import { ChevronDownIcon, ShoppingCartIcon, UserIcon } from "@heroicons/react/24
 import { usePathname, useRouter } from "next/navigation";
 import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
 import MenuDropDowCart from "./MenuDropDowCart/MenuDropDowCart";
+import { useCookies } from "react-cookie";
 
 const NavMenu = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const [cookies, setCookie, removeCookie] = useCookies(["userSignIn"]);
   const [cartGeneralStatus, setCartGeneralStatus] = useState({
     itemsLength: 0,
     totalPrice: 0,
@@ -38,6 +40,7 @@ const NavMenu = () => {
   const logicSignOut = () => {
     setCurrentUser(null);
     localData.deletStorage(localData.userData);
+    removeCookie("userSignIn");
     router.push("/home");
     console.log("SignOut");
   };

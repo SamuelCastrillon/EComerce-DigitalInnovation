@@ -13,7 +13,7 @@ const OrdersContainer = () => {
   const [orderSelect, setOrderSelect] = useState(0);
 
   useEffect(() => {
-    currentUser.login && fetchUserOrders(currentUser.token, setUserOrdersData);
+    currentUser?.login && fetchUserOrders(currentUser.token, setUserOrdersData);
   }, [currentUser]);
 
   useEffect(() => {
@@ -30,9 +30,7 @@ const OrdersContainer = () => {
 
               <div className="gap-4 mt-6 space-y-4 sm:mt-0 sm:flex sm:items-center sm:justify-end sm:space-y-0">
                 <div>
-                  <label
-                    // for="order-type"
-                    className="block mb-2 text-sm font-medium text-gray-900 sr-only ">
+                  <label className="block mb-2 text-sm font-medium text-gray-900 sr-only ">
                     Select order type
                   </label>
                   <select
