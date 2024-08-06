@@ -1,14 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const carouselItems = [
-  "https://via.placeholder.com/300",
-  "https://via.placeholder.com/300",
-  "https://via.placeholder.com/300",
+  { image: "https://via.placeholder.com/300", bg: "bg-yellow-300" },
+  { image: "https://via.placeholder.com/300", bg: "bg-violet-300" },
+  { image: "https://via.placeholder.com/300", bg: "bg-orange-300" },
 ];
 
 const HomeCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [translateCarousel, setTranslateCarousel] = useState<string>("");
   const carouselLength = carouselItems.length - 1;
 
   const handleNext = () => {
@@ -22,23 +23,31 @@ const HomeCarousel = () => {
   //? Carousel aouto play
   function nextSlideWithDelay(delayInMilliseconds: number) {
     setTimeout(() => {
-      setCurrentIndex((currentIndex + 1) % 3);
+      currentIndex < carouselLength ? setCurrentIndex(currentIndex + 1) : setCurrentIndex(0);
     }, delayInMilliseconds);
   }
   nextSlideWithDelay(4000);
 
+  useEffect(() => {
+    setTranslateCarousel("translate-x-[-100%]");
+    setTranslateCarousel("translate-x-[-200%]");
+  }, []);
+
+  useEffect(() => {
+    const valueToString = String(currentIndex * 100);
+    setTranslateCarousel(`translate-x-[-${valueToString}%]`);
+  }, [currentIndex, carouselLength]);
+
   return (
     <section className="relative w-screen h-[350px] bg-lime-200 flex justify-center">
-      <div className="overflow-hidden h-fit z-[0]">
+      <div className="overflow-hidden h-fit w-[900px]">
         <div
-          className={
-            "flex w-fit h-[400px] transition-transform " + `translate-x-[-${currentIndex * 100}%]`
-          }>
+          className={`flex h-[400px] w-fit transition-transform duration-300 ${translateCarousel}`}>
           {carouselItems.map((item, index) => (
             <div
               key={index}
-              className={`w-full h-full shrink-0 grow-0 basis-full bg-lime-950 transition-transform duration-300 transform`}>
-              <img src={item} alt={`Item ${index}`} className="w-auto h-auto" />
+              className={`w-full h-full shrink-0 basis-[100%] ${item.bg} transition-transform transform flex items-center justify-center`}>
+              <img src={item.image} alt={`Item ${index}`} className="w-auto h-auto" />
             </div>
           ))}
         </div>
