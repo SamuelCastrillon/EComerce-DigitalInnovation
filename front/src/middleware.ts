@@ -16,6 +16,7 @@ export function middleware(request: NextRequest) {
   }
 
   if (!cookieSignin) {
+    // console.log("hola");
     if (
       currentPath === "/dashboard/account" ||
       currentPath === "/dashboard/orders" ||
