@@ -3,10 +3,16 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import React from "react";
 
-const CartProductCard = ({ data, onClick }: { data: IProduct; onClick: Function }) => {
-  const { id, image, name, price, description, categoryId, stock } = data;
+interface ICartProductCard {
+  product: IProduct;
+  userId: number;
+  onClick: (userId: number, id: number) => void;
+}
+
+const CartProductCard: React.FC<ICartProductCard> = ({ product, userId, onClick }) => {
+  const { id, image, name, price, description, categoryId, stock } = product;
   function handeler() {
-    onClick(id);
+    onClick(userId, id);
   }
 
   return (

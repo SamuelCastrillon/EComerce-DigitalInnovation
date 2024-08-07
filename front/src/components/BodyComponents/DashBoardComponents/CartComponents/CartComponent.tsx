@@ -14,6 +14,7 @@ import React, { useContext, useEffect, useState } from "react";
 import CartProductCard from "./CartProductCard";
 import { createOrder } from "./CreateOrderHandeler";
 import { deletCurrentCart, saveCurrentCart } from "@/helpers/localStorageManager";
+import { ICreateOrderReq } from "@/helpers/interfaces/oerder.interface";
 
 interface IGeneralDataCart {
   itemsLength: number;
@@ -29,6 +30,9 @@ const CartComponent: React.FC = () => {
     itemsLength: 0,
     totalPrice: 0,
   });
+
+  const userId = currentUser?.user.id;
+
   async function checkCartProducts() {
     setAllProducts(await DataToBack.getAllProducts());
   }
@@ -54,9 +58,9 @@ const CartComponent: React.FC = () => {
   }
 
   //? function delet product to cart
-  function handelerDelet(id: number) {
-    const currentUserId = currentCart.userId;
-    const newUserOrder: { userId: number; products: number[] } = {
+  function handelerDelet(userId: number, id: number) {
+    const currentUserId = userId;
+    const newUserOrder: ICreateOrderReq = {
       userId: currentUserId,
       products: [],
     };
@@ -98,8 +102,16 @@ const CartComponent: React.FC = () => {
         <>
           <div className="flex flex-col flex-wrap gap-4 p-2 max-h-2/3">
             {productsToCart.length > 0 &&
+              userId &&
               productsToCart.map((product: IProduct, i: number) => {
-                return <CartProductCard key={i} data={product} onClick={handelerDelet} />;
+                return (
+                  <CartProductCard
+                    key={i}
+                    userId={userId}
+                    product={product}
+                    onClick={handelerDelet}
+                  />
+                );
               })}
           </div>
           <hr className=" border-lime-950" />
