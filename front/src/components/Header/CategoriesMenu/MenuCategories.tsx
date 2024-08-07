@@ -7,7 +7,7 @@ import { categoriesList } from "@/helpers/categoriesList";
 const MenuCategories: React.FC = () => {
   const [showMenu, setShowMenu] = useState(false);
   return (
-    <menu className="relative flex justify-center gap-5 text-white h-fit bg-lime-800">
+    <menu className="relative flex justify-center gap-5 text-white bg-gray-800 h-fit">
       <ButtonMenuDrow onClick={setShowMenu} previusState={showMenu} />
       <div
         className={`${

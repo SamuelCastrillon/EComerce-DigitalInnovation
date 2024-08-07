@@ -5,9 +5,9 @@ import Baner1 from "@/assets/img/Baner1.jpg";
 import Baner2 from "@/assets/img/Baner2.jpg";
 
 const carouselItems = [
-  { image: Baner0.src, bg: "bg-yellow-300" },
-  { image: Baner1.src, bg: "bg-violet-300" },
-  { image: Baner2.src, bg: "bg-orange-300" },
+  { image: Baner0.src, bg: "bg-gradient-to-t from-gray-700 to-gray-800" },
+  { image: Baner1.src, bg: "bg-lime-300" },
+  { image: Baner2.src, bg: "bg-gradient-to-t from-gray-800 to-gray-600" },
 ];
 
 const HomeCarousel = () => {
@@ -23,13 +23,17 @@ const HomeCarousel = () => {
     currentIndex === 0 ? setCurrentIndex(carouselLength) : setCurrentIndex(currentIndex - 1);
   };
 
-  //? Carousel aouto play
-  function nextSlideWithDelay(delayInMilliseconds: number) {
-    setTimeout(() => {
-      currentIndex < carouselLength ? setCurrentIndex(currentIndex + 1) : setCurrentIndex(0);
-    }, delayInMilliseconds);
-  }
-  nextSlideWithDelay(4000);
+  useEffect(() => {
+    //? Carousel aouto play
+    const intervalId = setInterval(() => {
+      handleNext();
+      console.log("Ejecutando cada 3000 ms");
+    }, 4000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [handleNext]);
 
   useEffect(() => {
     setTranslateCarousel("translate-x-[-100%]");
