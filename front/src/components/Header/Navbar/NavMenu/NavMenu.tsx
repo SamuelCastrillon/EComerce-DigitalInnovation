@@ -39,18 +39,18 @@ const NavMenu = () => {
     shetShowCart(false);
   }
 
-  // async function logOut() {
-  //   await removeCookie("userSignIn");
-  //   await setCurrentUser(null);
-  //   await deletCurrentUser();
-  //   router.push("/home");
-  // }
+  async function logOut() {
+    await removeCookie("userSignIn");
+    await setCurrentUser(null);
+    await deletCurrentUser();
+    router.push("/home");
+  }
 
   const logicSignOut = () => {
-    // logOut();
-    removeCookie("userSignIn");
-    setCurrentUser(null);
-    deletCurrentUser();
+    logOut();
+    // removeCookie("userSignIn");
+    // setCurrentUser(null);
+    // deletCurrentUser();
     Swal.fire({
       position: "top-end",
       icon: "success",
@@ -58,7 +58,7 @@ const NavMenu = () => {
       showConfirmButton: false,
       timer: 1500,
     });
-    router.push("/home");
+    // router.push("/home");
   };
 
   return (

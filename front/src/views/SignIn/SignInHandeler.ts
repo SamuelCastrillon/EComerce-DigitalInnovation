@@ -34,7 +34,7 @@ export async function postSubmitSignIn(data: IUserSignIn) {
         icon: "success",
         title: "User SignIn is Ok",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1200,
       });
       return response;
     }
@@ -44,7 +44,7 @@ export async function postSubmitSignIn(data: IUserSignIn) {
         icon: "error",
         title: "User SignIn Error",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 1200,
       });
     }
   } catch (error) {

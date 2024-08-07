@@ -15,6 +15,7 @@ import CartProductCard from "./CartProductCard";
 import { createOrder } from "./CreateOrderHandeler";
 import { deletCurrentCart, saveCurrentCart } from "@/helpers/localStorageManager";
 import { ICreateOrderReq } from "@/helpers/interfaces/oerder.interface";
+import Swal from "sweetalert2";
 
 interface IGeneralDataCart {
   itemsLength: number;
@@ -67,21 +68,34 @@ const CartComponent: React.FC = () => {
     currentCart.products.forEach(
       (idProduct: number) => idProduct != id && newUserOrder.products.push(idProduct)
     );
-    // localData.deletStorage(localData.userProductOrder + currentUserId);
+
     deletCurrentCart(currentUserId);
-    // localData.saveStorage(localData.userProductOrder, currentUserId, newUserOrder);
     saveCurrentCart(currentUserId, newUserOrder);
     setCurrentCart(newUserOrder);
   }
 
-  async function handelerCart() {
+  async function handelerSendOrder() {
     if (currentUser) {
       const newOrderResponse = await createOrder(currentCart, currentUser.token);
-      if (newOrderResponse.status === "approved") {
-        console.log(newOrderResponse);
-        alert("Send order ok");
+      if (newOrderResponse.status === "approved" && userId) {
+        // reset products to cart
+        deletCurrentCart(userId);
+        setCurrentCart({ userId: userId, products: [] });
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Send order ok",
+          showConfirmButton: false,
+          timer: 1000,
+        });
       } else {
-        alert("Fail Order");
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Fail Order",
+          showConfirmButton: false,
+          timer: 1000,
+        });
       }
     }
   }
@@ -125,7 +139,7 @@ const CartComponent: React.FC = () => {
               <span className="font-bold">${cartGeneralStatus.totalPrice}</span>
             </div>
             <button
-              onClick={handelerCart}
+              onClick={handelerSendOrder}
               disabled={cartGeneralStatus.itemsLength < 0}
               className={`w-full py-2 font-bold rounded-sm h-fit text-lime-950 ${
                 cartGeneralStatus.itemsLength < 0 ? "bg-gray-400" : "bg-lime-500"

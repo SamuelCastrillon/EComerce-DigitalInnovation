@@ -34,7 +34,7 @@ export function getCurrentCart(userId: number): ICurrentCart {
   const getData = localStorage.getItem(cartKeyDefiny + userId);
   if (getData) return JSON.parse(getData);
   else {
-    console.error("Undefine Key");
+    // console.error("Undefine Key");
     return { products: [], userId: userId };
   }
 }

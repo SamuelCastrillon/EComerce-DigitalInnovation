@@ -52,12 +52,7 @@ export const GlobalContext = ({ children }: { children: ReactNode }) => {
   function checkCartProducts() {
     if (currentUser) {
       const currentUserId = currentUser.user.id;
-      // const cartLocalDataString = localStorage.getItem(`productOrderUserID:${currentUserId}`);
       const cartLocalDataString = getCurrentCart(currentUserId);
-      // if (cartLocalDataString) {
-      //   const cartLocalDataParse: ICurrentCart = JSON.parse(cartLocalDataString);
-      //   setCurrentCart(cartLocalDataParse);
-      // }
       cartLocalDataString && setCurrentCart(cartLocalDataString);
     }
   }
