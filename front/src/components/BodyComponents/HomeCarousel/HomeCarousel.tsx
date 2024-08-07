@@ -1,10 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Baner0 from "@/assets/img/Baner0.jpg";
+import Baner1 from "@/assets/img/Baner1.jpg";
+import Baner2 from "@/assets/img/Baner2.jpg";
 
 const carouselItems = [
-  { image: "https://via.placeholder.com/300", bg: "bg-yellow-300" },
-  { image: "https://via.placeholder.com/300", bg: "bg-violet-300" },
-  { image: "https://via.placeholder.com/300", bg: "bg-orange-300" },
+  { image: Baner0.src, bg: "bg-yellow-300" },
+  { image: Baner1.src, bg: "bg-violet-300" },
+  { image: Baner2.src, bg: "bg-orange-300" },
 ];
 
 const HomeCarousel = () => {
