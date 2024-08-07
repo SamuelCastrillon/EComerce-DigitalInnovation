@@ -75,8 +75,16 @@ const CartListProductsContainer = () => {
   return (
     <article className="flex flex-col gap-5">
       {productsToCart.length > 0 &&
+        userID &&
         productsToCart.map((product: IProduct) => {
-          return <CartProductCard key={product.id} data={product} onClick={handelerDelet} />;
+          return (
+            <CartProductCard
+              key={product.id}
+              product={product}
+              userId={userID}
+              onClick={handelerDelet}
+            />
+          );
         })}
     </article>
   );

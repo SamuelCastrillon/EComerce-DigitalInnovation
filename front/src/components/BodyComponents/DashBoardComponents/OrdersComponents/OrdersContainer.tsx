@@ -10,7 +10,7 @@ const OrdersContainer = () => {
   const { currentUser } = useContext(AuthContext);
   const [userOrdersData, setUserOrdersData] = useState<IOrderResponce[]>();
   const [showOrderModaal, setShowOrderModal] = useState(false);
-  const [orderSelect, setOrderSelect] = useState(0);
+  const [orderSelect, setOrderSelect] = useState<null | number>(null);
 
   useEffect(() => {
     currentUser?.login && fetchUserOrders(currentUser.token, setUserOrdersData);
@@ -84,12 +84,25 @@ const OrdersContainer = () => {
       {showOrderModaal && (
         <section className="absolute z-10 w-screen h-full p-10 bg-opacity-55 bg-slate-800">
           <div className="w-full px-4 mx-auto 2xl:px-0 md:w-[80%] lg:w-[60%]">
-            {orderSelect != 0 && userOrdersData && (
-              <OrderDetailsModal
-                data={userOrdersData.find((order) => (order.id = orderSelect))}
+            {/* {orderSelect && userOrdersData &&
+            userOrdersData.find((order) => {
+              order.id = orderSelect && return
+              (<OrderDetailsModal
+                data={}
                 setModalStatus={setShowOrderModal}
-              />
-            )}
+              />)}
+            )} */}
+            {orderSelect &&
+              userOrdersData &&
+              userOrdersData.map((orderData) => {
+                if (orderData.id === orderSelect) {
+                  return (
+                    orderData && (
+                      <OrderDetailsModal data={orderData} setModalStatus={setShowOrderModal} />
+                    )
+                  );
+                }
+              })}
           </div>
         </section>
       )}

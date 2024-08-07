@@ -15,7 +15,7 @@ const OrderDetailsModal: React.FC<IOrder> = ({ data, setModalStatus }) => {
   }
 
   const { id, date, products, status } = data;
-
+  console.log(products);
   function handelerClose() {
     setModalStatus(false);
   }
