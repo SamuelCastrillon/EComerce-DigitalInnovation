@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { BaseSyntheticEvent, useContext, useEffect, useState } from "react";
 import OrdersCard from "./OrdersCard";
 import { AuthContext } from "@/helpers/Context/GlobalContext";
 import { fetchUserOrders } from "@/helpers/userOrdersHelpers";
@@ -11,6 +11,19 @@ const OrdersContainer = () => {
   const [userOrdersData, setUserOrdersData] = useState<IOrderResponce[]>();
   const [showOrderModaal, setShowOrderModal] = useState(false);
   const [orderSelect, setOrderSelect] = useState<null | number>(null);
+  const [order, setOrder] = useState<string>("");
+
+  function habdelerSelect(event: BaseSyntheticEvent) {
+    setOrder(event.target.value);
+    userOrdersData?.sort((a, b) => {
+      if (order === "Max") {
+        return a.id - b.id;
+      } else {
+        return b.id - a.id;
+      }
+    });
+    console.log(order);
+  }
 
   useEffect(() => {
     currentUser?.login && fetchUserOrders(currentUser.token, setUserOrdersData);
@@ -35,12 +48,11 @@ const OrdersContainer = () => {
                   </label>
                   <select
                     id="order-type"
+                    onChange={habdelerSelect}
                     className="block w-full min-w-[8rem] rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 ">
-                    <option selected>All orders</option>
-                    <option value="pre-order">Pre-order</option>
-                    <option value="transit">In transit</option>
-                    <option value="confirmed">Confirmed</option>
-                    <option value="cancelled">Cancelled</option>
+                    {/* <option selected>Order By Id</option> */}
+                    <option value="Max">Max to min</option>
+                    <option value="Min">Min to max</option>
                   </select>
                 </div>
 

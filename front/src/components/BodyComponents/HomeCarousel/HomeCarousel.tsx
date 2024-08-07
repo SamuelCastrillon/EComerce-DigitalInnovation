@@ -27,7 +27,7 @@ const HomeCarousel = () => {
     //? Carousel aouto play
     const intervalId = setInterval(() => {
       handleNext();
-      console.log("Ejecutando cada 3000 ms");
+      // console.log("Ejecutando cada 3000 ms");
     }, 4000);
 
     return () => {
