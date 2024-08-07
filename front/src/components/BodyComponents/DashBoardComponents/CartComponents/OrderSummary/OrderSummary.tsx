@@ -1,28 +1,34 @@
 "use client";
-import { AuthContext, CartContext, ProductsContext } from "@/helpers/Context/GlobalContext";
+import {
+  AuthContext,
+  CartContext,
+  IAuthcontext,
+  ICartContext,
+  IProductsContext,
+  ProductsContext,
+} from "@/helpers/Context/GlobalContext";
 import { DataToBack } from "@/helpers/classDataProducts";
-import { localData } from "@/helpers/classManagementLocalSotorage";
 import { dataToOrderSumary } from "@/helpers/productsCartHelpers";
-import { IProduct } from "@/helpers/interfaces/products.interface";
 import React, { useContext, useEffect, useState } from "react";
+import { getCurrentCart, getCurrentUser } from "@/helpers/localStorageManager";
 
 const OrderSummary = () => {
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
-  const { allProducts, setAllProducts } = useContext(ProductsContext);
-  const { currentCart, setCurrentCart } = useContext(CartContext);
+  const { currentUser, setCurrentUser } = useContext<IAuthcontext>(AuthContext);
+  const { allProducts, setAllProducts } = useContext<IProductsContext>(ProductsContext);
+  const { currentCart, setCurrentCart } = useContext<ICartContext>(CartContext);
   const [sumaryData, setSumaryData] = useState({ totalPrice: 0, productsNumber: 0 });
 
   let productsIsNotEqualToZero: boolean = false;
+  const userID = currentUser?.user.id;
 
-  async function checkCurrentData() {
-    !currentUser.login && (await setCurrentUser(localData.getStorage(localData.userData)));
+  async function checkCurrentData(id: number) {
+    !currentUser?.login && setCurrentUser(getCurrentUser());
+    !currentCart.userId && setCurrentCart(getCurrentCart(id));
     allProducts.length < 1 && setAllProducts(await DataToBack.getAllProducts());
-    !currentCart.userId &&
-      setCurrentCart(localData.getStorage(localData.userProductOrder + currentUser.user.id));
   }
 
   async function updateCartProducts() {
-    setSumaryData(dataToOrderSumary(currentCart.products, allProducts));
+    setSumaryData(dataToOrderSumary(currentCart?.products, allProducts));
   }
 
   function handelerCart() {
@@ -30,7 +36,7 @@ const OrderSummary = () => {
   }
 
   useEffect(() => {
-    checkCurrentData();
+    userID && checkCurrentData(userID);
   }, []);
 
   useEffect(() => {

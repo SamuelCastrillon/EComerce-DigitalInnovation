@@ -2,7 +2,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "@/helpers/Context/GlobalContext";
 import ActionButton from "@/components/PublicComponents/Buttons/ActionButton/ActionButton";
-import { localData } from "@/helpers/classManagementLocalSotorage";
 import NavbarButtonsPublic from "./MenuButtonsComponents/NavbarButtonsPublic";
 import NavbarButtonsUserSignIn from "./MenuButtonsComponents/NavbarButtonsUserSignIn";
 import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline";
@@ -11,6 +10,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
 import MenuDropDowCart from "./MenuDropDowCart/MenuDropDowCart";
 import { useCookies } from "react-cookie";
+import { deletCurrentUser } from "@/helpers/localStorageManager";
+import Swal from "sweetalert2";
 
 const NavMenu = () => {
   const router = useRouter();
@@ -29,7 +30,7 @@ const NavMenu = () => {
     shetShowCart(false);
   }, [pathname]);
 
-  function dropDawCart() {
+  function dropDawCart(): void {
     shetShowCart(!showCart);
     shetShowMenu(false);
   }
@@ -37,12 +38,27 @@ const NavMenu = () => {
     shetShowMenu(!showMenu);
     shetShowCart(false);
   }
+
+  // async function logOut() {
+  //   await removeCookie("userSignIn");
+  //   await setCurrentUser(null);
+  //   await deletCurrentUser();
+  //   router.push("/home");
+  // }
+
   const logicSignOut = () => {
-    setCurrentUser(null);
-    localData.deletStorage(localData.userData);
+    // logOut();
     removeCookie("userSignIn");
+    setCurrentUser(null);
+    deletCurrentUser();
+    Swal.fire({
+      position: "top-end",
+      icon: "success",
+      title: "You have Sign Out!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
     router.push("/home");
-    console.log("SignOut");
   };
 
   return (

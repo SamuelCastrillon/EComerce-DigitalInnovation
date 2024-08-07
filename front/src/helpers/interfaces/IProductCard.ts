@@ -1,6 +1,6 @@
 export interface ICurrentCart {
-  products: number[] | [];
   userId: number;
+  products: number[] | [];
 }
 
 export interface IProductCard {

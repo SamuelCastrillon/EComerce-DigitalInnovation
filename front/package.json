@@ -17,6 +17,8 @@
     "react-cookie": "^7.2.0",
     "react-dom": "^18",
     "server-only": "^0.0.1",
+    "sweetalert2": "^11.12.4",
+    "sweetalert2-react-content": "^5.0.7",
     "yup": "^1.4.0"
   },
   "devDependencies": {

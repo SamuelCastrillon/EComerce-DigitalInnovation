@@ -1,11 +1,11 @@
 "use client";
 import { CartContext, ICartContext, ProductsContext } from "@/helpers/Context/GlobalContext";
 import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
-import { localData } from "@/helpers/classManagementLocalSotorage";
 import { IProduct } from "@/helpers/interfaces/products.interface";
 import React, { useContext, useEffect, useState } from "react";
 import MenuSmallProductCard from "./MenuSmallProductCard/MenuSmallProductCard";
 import { ICreateOrderReq } from "@/helpers/interfaces/oerder.interface";
+import { deletCurrentCart, saveCurrentCart } from "@/helpers/localStorageManager";
 
 interface IGeneralDataCart {
   itemsLength: number;
@@ -57,8 +57,10 @@ const MenuDropDowCart: React.FC<IMenuDropDowCart> = ({
     currentCart.products.forEach(
       (idProduct: number) => idProduct != id && newUserOrder.products.push(idProduct)
     );
-    localData.deletStorage(localData.userProductOrder + currentUserId);
-    localData.saveStorage(localData.userProductOrder, currentUserId, newUserOrder);
+    // localData.deletStorage(localData.userProductOrder + currentUserId);
+    deletCurrentCart(currentUserId);
+    // localData.saveStorage(localData.userProductOrder, currentUserId, newUserOrder);
+    saveCurrentCart(currentUserId, newUserOrder);
     setCurrentCart(newUserOrder);
   }
 

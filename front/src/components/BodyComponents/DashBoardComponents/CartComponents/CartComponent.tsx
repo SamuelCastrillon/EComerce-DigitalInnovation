@@ -1,18 +1,29 @@
 "use client";
-import { AuthContext, CartContext, ProductsContext } from "@/helpers/Context/GlobalContext";
+import {
+  AuthContext,
+  CartContext,
+  IAuthcontext,
+  ICartContext,
+  IProductsContext,
+  ProductsContext,
+} from "@/helpers/Context/GlobalContext";
 import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
 import { DataToBack } from "@/helpers/classDataProducts";
-import { localData } from "@/helpers/classManagementLocalSotorage";
 import { IProduct } from "@/helpers/interfaces/products.interface";
 import React, { useContext, useEffect, useState } from "react";
 import CartProductCard from "./CartProductCard";
-import { ICreateOrderReq } from "@/helpers/interfaces/oerder.interface";
 import { createOrder } from "./CreateOrderHandeler";
+import { deletCurrentCart, saveCurrentCart } from "@/helpers/localStorageManager";
+
+interface IGeneralDataCart {
+  itemsLength: number;
+  totalPrice: number;
+}
 
 const CartComponent: React.FC = () => {
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
-  const { currentCart, setCurrentCart } = useContext(CartContext);
-  const { allProducts, setAllProducts } = useContext<IProduct[]>(ProductsContext);
+  const { currentUser, setCurrentUser } = useContext<IAuthcontext>(AuthContext);
+  const { allProducts, setAllProducts } = useContext<IProductsContext>(ProductsContext);
+  const { currentCart, setCurrentCart } = useContext<ICartContext>(CartContext);
   const [productsToCart, setProductsToCart] = useState<IProduct[]>([]);
   const [cartGeneralStatus, setCartGeneralStatus] = useState({
     itemsLength: 0,
@@ -45,27 +56,29 @@ const CartComponent: React.FC = () => {
   //? function delet product to cart
   function handelerDelet(id: number) {
     const currentUserId = currentCart.userId;
-    const newUserOrder = {
+    const newUserOrder: { userId: number; products: number[] } = {
       userId: currentUserId,
       products: [],
     };
     currentCart.products.forEach(
       (idProduct: number) => idProduct != id && newUserOrder.products.push(idProduct)
     );
-    localData.deletStorage(localData.userProductOrder + currentUserId);
-    localData.saveStorage(localData.userProductOrder, currentUserId, newUserOrder);
+    // localData.deletStorage(localData.userProductOrder + currentUserId);
+    deletCurrentCart(currentUserId);
+    // localData.saveStorage(localData.userProductOrder, currentUserId, newUserOrder);
+    saveCurrentCart(currentUserId, newUserOrder);
     setCurrentCart(newUserOrder);
   }
 
   async function handelerCart() {
-    // const User = localData.getStorage(localData.userData);
-    // console.log(currentUser);
-    const newOrderResponse = await createOrder(currentCart, currentUser.token);
-    if (newOrderResponse.status === "approved") {
-      console.log(newOrderResponse);
-      alert("Send order ok");
-    } else {
-      alert("Fail Order");
+    if (currentUser) {
+      const newOrderResponse = await createOrder(currentCart, currentUser.token);
+      if (newOrderResponse.status === "approved") {
+        console.log(newOrderResponse);
+        alert("Send order ok");
+      } else {
+        alert("Fail Order");
+      }
     }
   }
 

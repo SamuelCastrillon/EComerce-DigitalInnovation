@@ -9,11 +9,12 @@ import {
   TitleFormData,
 } from "./SignInData";
 import { IUserSignIn, postSubmitSignIn } from "./SignInHandeler";
-import { localData } from "@/helpers/classManagementLocalSotorage";
 import { useRouter } from "next/navigation";
 import { AuthContext } from "@/helpers/Context/GlobalContext";
 import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
 import { useCookies } from "react-cookie";
+import { IUserLoginRes } from "@/helpers/interfaces/user.interface";
+import { saveCurrentUser } from "@/helpers/localStorageManager";
 
 const SingInView = () => {
   const router = useRouter();
@@ -21,12 +22,13 @@ const SingInView = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["userSignIn"]);
 
   async function handelerSubmit(data: IUserSignIn) {
-    const response = await postSubmitSignIn(data);
+    const response: IUserLoginRes = await postSubmitSignIn(data);
 
     if (response.login) {
-      localData.saveStorage(localData.userData, "", response);
-      setCurrentUser(response);
       setCookie("userSignIn", response.login);
+      // localData.saveStorage(localData.userData, "", response);
+      saveCurrentUser(response);
+      setCurrentUser(response);
       router.push("/home");
     }
   }

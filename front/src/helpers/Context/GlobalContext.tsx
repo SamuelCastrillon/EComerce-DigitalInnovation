@@ -4,6 +4,7 @@ import { IUserLoginRes } from "../interfaces/user.interface";
 import { IProduct } from "../interfaces/products.interface";
 import { DataToBack } from "../classDataProducts";
 import { ICurrentCart } from "../interfaces/IProductCard";
+import { getCurrentCart, getCurrentUser } from "../localStorageManager";
 
 export interface IAuthcontext {
   currentUser: IUserLoginRes | null;
@@ -15,7 +16,7 @@ export const AuthContext = createContext<IAuthcontext>({
   setCurrentUser: () => {},
 });
 
-interface IProductsContext {
+export interface IProductsContext {
   allProducts: IProduct[] | [];
   setAllProducts: (allProducts: IProduct[] | []) => void;
 }
@@ -51,21 +52,25 @@ export const GlobalContext = ({ children }: { children: ReactNode }) => {
   function checkCartProducts() {
     if (currentUser) {
       const currentUserId = currentUser.user.id;
-      const cartLocalDataString = localStorage.getItem(`productOrderUserID:${currentUserId}`);
-      if (cartLocalDataString) {
-        const cartLocalDataParse: ICurrentCart = JSON.parse(cartLocalDataString);
-        setCurrentCart(cartLocalDataParse);
-      }
+      // const cartLocalDataString = localStorage.getItem(`productOrderUserID:${currentUserId}`);
+      const cartLocalDataString = getCurrentCart(currentUserId);
+      // if (cartLocalDataString) {
+      //   const cartLocalDataParse: ICurrentCart = JSON.parse(cartLocalDataString);
+      //   setCurrentCart(cartLocalDataParse);
+      // }
+      cartLocalDataString && setCurrentCart(cartLocalDataString);
     }
   }
 
   useEffect(() => {
     if (!currentUser) {
-      const dataUser = localStorage.getItem("dataUserID:");
-      if (dataUser) {
-        const userParse: IUserLoginRes = JSON.parse(dataUser);
-        setCurrentUser(userParse);
-      }
+      // const dataUser = localStorage.getItem("dataUserID:");
+      const dataUser = getCurrentUser();
+      // if (dataUser) {
+      //   const userParse: IUserLoginRes = JSON.parse(dataUser);
+      //   setCurrentUser(userParse);
+      // }
+      setCurrentUser(dataUser);
     }
     if (allProducts.length === 0) {
       getProducts();

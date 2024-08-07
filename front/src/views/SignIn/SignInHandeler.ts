@@ -1,3 +1,6 @@
+import { IUserLoginRes } from "@/helpers/interfaces/user.interface";
+import Swal from "sweetalert2";
+
 const URL_API = process.env.NEXT_PUBLIC_API_URL;
 
 export interface IUserSignIn {
@@ -26,10 +29,24 @@ export async function postSubmitSignIn(data: IUserSignIn) {
   try {
     const response = await userSignIn(data);
     if (response.login) {
-      alert("User SignIn is Ok");
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "User SignIn is Ok",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       return response;
     }
-    if (response.statusCode === 400) alert(`User SignIn Error - ${response.message}`);
+    if (response.statusCode === 400) {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "User SignIn Error",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   } catch (error) {
     console.error(error);
   }

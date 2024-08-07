@@ -1,7 +1,7 @@
 import { IProduct } from "@/helpers/interfaces/products.interface";
 
 export function shearchProductsCartById(
-  productsCart: [number],
+  productsCart: number[],
   allProducts: IProduct[]
 ): IProduct[] {
   const carProducts: IProduct[] = [];
@@ -15,7 +15,7 @@ export function shearchProductsCartById(
   return carProducts;
 }
 
-export function dataToOrderSumary(productsCart: [number], allProducts: IProduct[]) {
+export function dataToOrderSumary(productsCart: number[], allProducts: IProduct[]) {
   const productToProcess = shearchProductsCartById(productsCart, allProducts);
   const objetToReturn = {
     totalPrice: 0,

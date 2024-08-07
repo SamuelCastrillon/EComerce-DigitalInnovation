@@ -20,7 +20,7 @@ const ProductDetailsCard: React.FC<IData> = ({ data }) => {
           <div className="flex flex-col">
             <h2 className="text-3xl font-bold">{name}</h2>
             <strong className="mt-5 mb-5 text-2xl">US$ {price}</strong>
-            <ButtonAddToCart id={id} className={null} />
+            <ButtonAddToCart productID={id} className={null} />
           </div>
           <hr className="h-px mt-2 mb-2 border-none bg-lime-600" />
           <p className="text-gray-300">{description}</p>

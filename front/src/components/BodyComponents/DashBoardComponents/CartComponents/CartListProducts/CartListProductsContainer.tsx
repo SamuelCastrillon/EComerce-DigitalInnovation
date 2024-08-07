@@ -1,22 +1,34 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import CartProductCard from "../CartProductCard";
-import { AuthContext, CartContext, ProductsContext } from "@/helpers/Context/GlobalContext";
+import {
+  AuthContext,
+  CartContext,
+  IAuthcontext,
+  ICartContext,
+  IProductsContext,
+  ProductsContext,
+} from "@/helpers/Context/GlobalContext";
 import { IProduct } from "@/helpers/interfaces/products.interface";
-import { NavigateButton } from "@/components/PublicComponents/Buttons/NavigateButton/NavigateButton";
-import { localData } from "@/helpers/classManagementLocalSotorage";
 import { DataToBack } from "@/helpers/classDataProducts";
+import {
+  deletCurrentCart,
+  getCurrentCart,
+  getCurrentUser,
+  saveCurrentCart,
+} from "@/helpers/localStorageManager";
 
 const CartListProductsContainer = () => {
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
-  const { currentCart, setCurrentCart } = useContext(CartContext);
-  const { allProducts, setAllProducts } = useContext<IProduct[]>(ProductsContext);
+  const { currentUser, setCurrentUser } = useContext<IAuthcontext>(AuthContext);
+  const { allProducts, setAllProducts } = useContext<IProductsContext>(ProductsContext);
+  const { currentCart, setCurrentCart } = useContext<ICartContext>(CartContext);
   const [productsToCart, setProductsToCart] = useState<IProduct[]>([]);
 
-  async function checkCartProducts() {
-    !currentUser.login && (await setCurrentUser(localData.getStorage(localData.userData)));
-    !currentCart.userId &&
-      setCurrentCart(localData.getStorage(localData.userProductOrder + currentUser.user.id));
+  const userID = currentUser?.user.id;
+
+  async function checkCartProducts(id: number) {
+    !currentUser?.login && setCurrentUser(getCurrentUser());
+    !currentCart.userId && setCurrentCart(getCurrentCart(id));
     setAllProducts(await DataToBack.getAllProducts());
   }
 
@@ -36,20 +48,22 @@ const CartListProductsContainer = () => {
   //? function delet product to cart
   function handelerDelet(id: number) {
     const currentUserId = currentCart.userId;
-    const newUserOrder = {
+    const newUserOrder: { userId: number; products: number[] } = {
       userId: currentUserId,
       products: [],
     };
     currentCart.products.forEach(
       (idProduct: number) => idProduct != id && newUserOrder.products.push(idProduct)
     );
-    localData.deletStorage(localData.userProductOrder + currentUserId);
-    localData.saveStorage(localData.userProductOrder, currentUserId, newUserOrder);
+    // localData.deletStorage(localData.userProductOrder + currentUserId);
+    deletCurrentCart(currentUserId);
+    // localData.saveStorage(localData.userProductOrder, currentUserId, newUserOrder);
+    saveCurrentCart(currentUserId, newUserOrder);
     setCurrentCart(newUserOrder);
   }
 
   useEffect(() => {
-    checkCartProducts();
+    userID && checkCartProducts(userID);
   });
 
   useEffect(() => {
