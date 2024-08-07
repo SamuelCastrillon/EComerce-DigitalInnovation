@@ -12,7 +12,7 @@ const MenuCategories: React.FC = () => {
       <div
         className={`${
           showMenu ? "flex" : "hidden"
-        } absolute z-20 flex-col h-fit border-t-2 border-lime-950 bg-lime-800 top-[100%] p-2 w-full items-center gap-1 md:flex md:static md:flex-row md:justify-evenly md:border-none md:z-0`}>
+        } absolute z-20 flex-col h-fit border-t-2 border-lime-950 bg-gradient-to-r from-gray-600 to-gray-900 top-[100%] p-2 w-full items-center gap-1 md:flex md:static md:flex-row md:justify-evenly md:border-none md:z-0`}>
         {categoriesList.map((categorie) => {
           return <ButtonMenu key={categorie.id} name={categorie.name} />;
         })}
