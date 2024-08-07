@@ -12,7 +12,7 @@ const ShopView: React.FC<IFiltersParams> = async ({ params }) => {
   const dataResponse: IProduct[] = await DataToBack.getAllProducts();
   return (
     <>
-      <MenuProductsController />
+      {/* <MenuProductsController /> */}
       {dataResponse.length > 0 && (
         <ProductsList dataRendering={dataResponse} filterParams={params} />
       )}
