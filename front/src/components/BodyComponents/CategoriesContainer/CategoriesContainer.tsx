@@ -9,7 +9,7 @@ const CategoriesContainer = () => {
         return (
           <CategorieCard key={card.id} name={card.name}>
             {card.iconeObject ? (
-              <card.iconeObject className="w-1/2 text-lime-600" />
+              <card.iconeObject className="w-1/2 text-gray-600" />
             ) : (
               <img src={card.iconeUrl} alt={`${card.name}Icone`} className="w-1/2" />
             )}
