@@ -22,7 +22,6 @@ const OrdersContainer = () => {
         return b.id - a.id;
       }
     });
-    console.log(order);
   }
 
   useEffect(() => {
@@ -96,14 +95,6 @@ const OrdersContainer = () => {
       {showOrderModaal && (
         <section className="absolute z-10 w-screen h-full p-10 bg-opacity-55 bg-slate-800">
           <div className="w-full px-4 mx-auto 2xl:px-0 md:w-[80%] lg:w-[60%]">
-            {/* {orderSelect && userOrdersData &&
-            userOrdersData.find((order) => {
-              order.id = orderSelect && return
-              (<OrderDetailsModal
-                data={}
-                setModalStatus={setShowOrderModal}
-              />)}
-            )} */}
             {orderSelect &&
               userOrdersData &&
               userOrdersData.map((orderData) => {

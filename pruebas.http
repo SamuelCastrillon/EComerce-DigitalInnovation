@@ -8,6 +8,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTcy
 
 ### get
 GET http://localhost:3000/products
+### get
+GET https://xhtm8b2f-3001.use2.devtunnels.ms/products
 
 ### search
 GET http://localhost:3000/users/1
