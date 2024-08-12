@@ -1,4 +1,4 @@
-# EComerce-Proyecto
+# EComerce-Proyect
 
 This project is a simple ecommerce, including user sign in, user sign up, user dashboard and products list.
 
