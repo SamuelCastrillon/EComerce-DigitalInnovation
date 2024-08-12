@@ -2,6 +2,9 @@
 
 This project is a simple ecommerce, including user sign in, user sign up, user dashboard and products list.
 
+Url: [https://digitalinnovation.vercel.app/](https://digitalinnovation.vercel.app/)
+
+
 ## Installation
 
 1. Clone the repository using `git clone <repository-link>`
